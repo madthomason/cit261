@@ -5,36 +5,42 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>DS Section1</title>
+    <title>DS Section3</title>
 
     <style>
         body {
             color: crimson;
             background-color: aqua;
         }
-        button {
-            background-color: blueviolet;
-        }
-        #toFill {
-            background-color: gold;
-            height: 100px;
-            width: 100px;
-            padding: 5px;
-            position: relative;
-            top: 10px;
-            left: 10px;
-        }
     </style>
 </head>
 <body>
-<p>Are you</p>
-<button type="button" onclick="showResponse(this)">Gullible?</button>
-<section id="toFill"></section>
+<h2>Personal Traits</h2>
+If your aren't gullible then you are:<input type="text" id="traitInput">
+<section id="options">
+    <button onclick="loadTraits()">Find and Edit</button>
+    <button onclick="saveTraits()">Save</button>
+    <button onclick="displayTraits()">Display</button>
+</section>
+<textarea id="traitEditor" placeholder="Add other traits that you have!"></textarea>
+<section id="displayTraits"></section>
 <script>
-    function showResponse(theButtonClicked) {
-        document.getElementById("toFill").innerHTML = "<p>easily duped<p>";
-        theButtonClicked.innerHTML = "Called it!";
+    function loadTraits() {
+
     }
+
+    function saveTraits() {
+
+    }
+
+    function displayTraits() {
+
+    }
+
+    // function showResponse(theButtonClicked) {
+    //     document.getElementById("toFill").innerHTML = "<p>easily duped<p>";
+    //     theButtonClicked.innerHTML = "Called it!";
+    // }
 </script>
 </body>
 </html>
