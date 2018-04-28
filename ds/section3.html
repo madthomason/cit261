@@ -6,41 +6,29 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>DS Section3</title>
-
+    <script src="section_3.js"></script>
     <style>
         body {
             color: crimson;
             background-color: aqua;
         }
+        textarea {
+            width: 150px;
+            height: 400px;
+            background-color: burlywood;
+        }
     </style>
 </head>
 <body>
 <h2>Personal Traits</h2>
-If your aren't gullible then you are:<input type="text" id="traitInput">
+Name:<input type="text" id="nameInput">
 <section id="options">
     <button onclick="loadTraits()">Find and Edit</button>
     <button onclick="saveTraits()">Save</button>
     <button onclick="displayTraits()">Display</button>
 </section>
-<textarea id="traitEditor" placeholder="Add other traits that you have!"></textarea>
+<textarea id="traitEditor" placeholder="If you aren't gullible then add other traits that you have!"></textarea>
 <section id="displayTraits"></section>
-<script>
-    function loadTraits() {
 
-    }
-
-    function saveTraits() {
-
-    }
-
-    function displayTraits() {
-
-    }
-
-    // function showResponse(theButtonClicked) {
-    //     document.getElementById("toFill").innerHTML = "<p>easily duped<p>";
-    //     theButtonClicked.innerHTML = "Called it!";
-    // }
-</script>
 </body>
 </html>
