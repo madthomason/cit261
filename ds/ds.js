@@ -1,18 +1,40 @@
 //SECTION 5
-function 
+function checkNumbers() {
+    var someNumbers = [24, -8, "text", 46, 3, 7];
+
+    for (var i = 0; i < 6; i++) {
+        var someNumAsText = someNumbers[i];
+        var num = parseInt(someNumAsText);
+        if (!isNaN(num) && someNumAsText != "") {
+            if (num == 0) {
+                document.getElementById("display").innerHTML += "<p> O is neither Even or Odd</p>";
+            }
+            else if (num % 2 == 0)
+                document.getElementById("display").innerHTML += "<p>" + num + "is Even</p>";
+            else if (num % 2 == 1)
+                document.getElementById("display").innerHTML += "<p>" + num + "is Odd (like you!)</p>";
+        }
+    }
+}
 
 //SECTION 4
 function judgeFood() {
     var food = document.getElementById("foodName").value;
+    var isNumber = parseInt(food);
     var judgement = 'initial';
-    if (food == "gummy worms") {
-        judgement = "YES Please!";
-    }
-    else if(food == "anchovies") {
-        judgement = "NO."
+    if (food != "" || isNaN(isNumber)) {
+        if (food == "gummy worms") {
+            judgement = "YES Please!";
+        }
+        else if (food == "anchovies") {
+            judgement = "NO."
+        }
+        else {
+            judgement = "Maybe. I'll think about it.";
+        }
     }
     else {
-        judgement = "Maybe. I'll think about it.";
+        judgement = "Please enter a food name."
     }
     document.getElementById("display").innerHTML = food + "? " + judgement;
 }
