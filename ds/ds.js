@@ -1,8 +1,11 @@
+//SECTION 6
+
+
 //SECTION 5
 function checkNumbers() {
-    var someNumbers = [24, -8, "text", 46, 3, 7];
+    var someNumbers = [24, -8, "text", 46, 0, 3, 7];
 
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < 7; i++) {
         var someNumAsText = someNumbers[i];
         var num = parseInt(someNumAsText);
         if (!isNaN(num) && someNumAsText != "") {
@@ -10,9 +13,12 @@ function checkNumbers() {
                 document.getElementById("display").innerHTML += "<p> O is neither Even or Odd</p>";
             }
             else if (num % 2 == 0)
-                document.getElementById("display").innerHTML += "<p>" + num + "is Even</p>";
+                document.getElementById("display").innerHTML += "<p>" + num + " is Even</p>";
             else if (num % 2 == 1)
-                document.getElementById("display").innerHTML += "<p>" + num + "is Odd (like you!)</p>";
+                document.getElementById("display").innerHTML += "<p>" + num + " is Odd (like you!)</p>";
+        }
+        else {
+            document.getElementById("display").innerHTML += "<p> Not even a number!</p>";
         }
     }
 }
