@@ -1,7 +1,44 @@
 //SECTION 6
 
+//SECTION 5 -Journaling
+function saveReminder() {
+    var currentDateTime = new Date();
+    var description = document.getElementById("describe").value;
+    var note = document.getElementById("noteInput").value;
+    var fullNote = currentDateTime.toLocaleString() + "--" + description;
+    fullNote += "<p>" + note + "</p>";
 
-//SECTION 5
+    var notesStored = localStorage.getItem("all_notes");
+    var allNotes = JSON.parse(notesStored);
+    if (allNotes == null) {
+        allNotes = [];
+    }
+    allNotes.push(fullNote);
+    var notesStored = JSON.stringify(allNotes);
+    localStorage.setItem("all_notes", notesStored);
+    showAllNotes();
+    document.getElementById("describe").value = null;
+    document.getElementById("noteInput").value = null;
+}
+
+function showAllNotes() {
+    var storedNotes = localStorage.getItem("all_notes");
+    var allNotes = JSON.parse(storedNotes);
+    if (allNotes) {
+        var displayer = document.getElementById("notesDisplay");
+        displayer.innerHTML = null;
+        var numberOfNotes = allNotes.length;
+        for (var i = numberOfNotes - 1; i > 0; i--) {
+            displayer.innerHTML += "<hr><p>" + allNotes[i] + "</p>";
+        }
+    }
+}
+
+function clearNotes() {
+
+}
+
+//SECTION 5 -Checking
 function checkNumbers() {
     var someNumbers = [24, -8, "text", 46, 0, 3, 7];
 

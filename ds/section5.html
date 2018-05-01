@@ -7,6 +7,7 @@
     <style>
         body {
             background-color: LightGrey;
+            font-family: "Comic Sans MS";
         }
 
         input {
@@ -17,12 +18,65 @@
             width: 200px;
             text-indent: 5px;
         }
+
+        button {
+            border-radius: 4px;
+            background-color: #2040ff;
+            border: none;
+            color: aliceblue;
+            height: 35px;
+            width: 85px;
+        }
+
+       .part {
+            border: 3px solid blue;
+            padding: 5px;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 0 5px darkblue;
+            margin: 10px;
+           width: 700px;
+
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        textarea {
+            height: 200px;
+            width: 600px;
+            margin-left: 50px;
+            margin-top: 5px;
+        }
     </style>
 </head>
-<body>
+<body onload="showAllNotes()">
 <!-- Groups and Loops -->
-<h1>Even or Odd Loopty Loop</h1>
-<button onclick="checkNumbers()">Check the Array</button>
-<section id="display"></section>
+<div class="part">
+    <div id="enter">
+        <h1>Even or Odd Loopty Loop</h1>
+        <button onclick="checkNumbers()">Check the Array</button>
+    </div>
+    <section class="displ" id="display"></section>
+</div>
+
+<div class="part">
+    <div id="noteTaking">
+        <h1>Notes:</h1>
+        Description: <input id="describe">
+        <textarea id="noteInput" placeholder="What do you want for me to remember for you?"></textarea>
+        <section>
+            <button onclick="saveReminder()">Save This!</button>
+            <!--
+            <button onclick="showAllNotes()">What were my reminders?</button>
+            Who wants to click it if it self updates?-->
+            <button onclick="clearNotes()">Clear Reminders</button>
+        </section>
+    </div>
+    <section class="displ" id="notesDisplay"></section>
+</div>
+
+
 </body>
 </html>
