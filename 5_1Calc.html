@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <script>
+        function add() {
+            var a = parseFloat(document.getElementById("one").value);
+            var b = parseFloat(document.getElementById("two").value);
+            document.getElementById("answer").innerHTML = a + b;
+        }
+
+        function subtract() {
+            var a = parseFloat(document.getElementById("one").value);
+            var b = parseFloat(document.getElementById("two").value);
+            document.getElementById("answer").innerHTML = a - b;
+        }
+
+        function divide() {
+            var a = parseFloat(document.getElementById("one").value);
+            var b = parseFloat(document.getElementById("two").value);
+            if (b) {
+                document.getElementById("answer").innerHTML = a / b;
+            }
+            else {
+                document.getElementById("answer").innerHTML = "No dividing by 0!";
+            }
+        }
+
+        function multiply() {
+            var a = parseFloat(document.getElementById("one").value);
+            var b = parseFloat(document.getElementById("two").value);
+            document.getElementById("answer").innerHTML = a * b;
+        }
+    </script>
+</head>
+<body>
+<div>
+    <input type="number" id="one">
+    <input type="number" id="two">
+</div>
+<button onclick="add()">+</button>
+<button onclick="subtract()">-</button>
+<button onclick="divide()">/</button>
+<button onclick="multiply()">x</button>
+Results:
+<span id="answer"></span>
+</body>
+</html>

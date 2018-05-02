@@ -3,8 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>DS Section6</title>
+    <script src="ds.js"></script>
 </head>
-<body>
+<body onload="showAllFriends()">
+<!-- Friends -->
+<div class="part">
+    <div id="friends">
+        <h1>Friends:</h1>
+        <input id="name" placeholder="Name">
+        <input id="age" placeholder="Age">
+        <input id="group" placeholder="Group">
+        <section>
+            <button onclick="saveFriends()">Save This!</button>
+            <!--
+            <button onclick="showAllNotes()">What were my reminders?</button>
+            Who wants to click it if it self updates?-->
+            <button onclick="clearFriends()">Clear List</button>
+        </section>
+    </div>
+    <section id="friendsDisplay"></section>
+</div>
 
 </body>
 </html>

@@ -1,4 +1,54 @@
 //SECTION 6
+function saveFriends() {
+    var newFriend = {
+        "name":document.getElementById("name").value,
+        "age":document.getElementById("age").value,
+        "group":document.getElementById("group").value
+    }
+
+    var allFriends = null;
+    var friendsStored = localStorage.getItem("all_friends");
+
+    if (friendsStored == "null") {
+        allFriends = [];
+    }
+    else {
+        allFriends = JSON.parse(friendsStored);
+    }
+    allFriends.push(newFriend);
+    var friendsStored = JSON.stringify(allFriends);
+    localStorage.setItem("all_friends", friendsStored);
+
+    showAllFriends();
+    document.getElementById("name").value = null;
+    document.getElementById("age").value = null;
+    document.getElementById("group").value = null;
+}
+
+function showAllFriends() {
+    var storedFriends = localStorage.getItem("all_friends");
+console.log(storedFriends);
+    if (storedFriends !== "null" || storedFriends === "") { //Why is it still going through since it is null?
+        var allFriends = JSON.parse(storedFriends);
+        var displayer = document.getElementById("friendsDisplay");
+        displayer.innerHTML = null;
+        var numberOfFriends = allFriends.length;
+        for (var i = numberOfFriends - 1; i >= 0; i--) {
+            displayer.innerHTML += "<hr><p>Friend: "
+                + allFriends[i]["name"] + "</p>"
+                + "<p> Age: " + allFriends[i]["age"] + "</p>"
+                + "<p> Group: " + allFriends[i]["group"] + "</p>";
+        }
+    }
+    else {
+        document.getElementById("friendsDisplay").innerHTML = "<p> Go make some friends!</p>";
+    }
+}
+
+function clearFriends() {
+    localStorage.setItem("all_friends", null);
+    showAllFriends(); //?
+}
 
 //SECTION 5 -Journaling
 function saveReminder() {
@@ -28,7 +78,7 @@ function showAllNotes() {
         var displayer = document.getElementById("notesDisplay");
         displayer.innerHTML = null;
         var numberOfNotes = allNotes.length;
-        for (var i = numberOfNotes - 1; i > 0; i--) {
+        for (var i = numberOfNotes - 1; i >= 0; i--) {
             displayer.innerHTML += "<hr><p>" + allNotes[i] + "</p>";
         }
     }
