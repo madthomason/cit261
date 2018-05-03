@@ -33,6 +33,13 @@ function tryObject() {
         console.log(`${key}: ${value}`);
     }//}
 
+    const dice = {
+        sides: 26,
+        roll: function() {
+            return Math.floor(this.sides * Math.random()) + 1; // Not working as the book says it should.
+        },
+    }
+    console.log('roll = ' + dice.roll());
 }
 
 function nestedObjects() {
@@ -46,6 +53,42 @@ function nestedObjects() {
             return `${catchPhrase} -${name}`;
         }
     }
-    
-   console.log(jla.catchPhrase({name: jla.superman.realName, catchPhrase: jla.superman['catch phrase']}));
+
+    console.log(jla.catchPhrase({name: jla.superman.realName, catchPhrase: jla.superman['catch phrase']}));
+}
+
+function builtIn() {
+    const wonderWoman = {
+        name: 'Wonder Woman',
+        'real name': 'Diana Prince',
+        height: 72.23,
+        weight: 165,
+        hero: true,
+        villain: false,
+        updates: null,
+        allies: ['Wonder Girl', 'Donna Troy', 'Superman'],
+        lasso: function () {
+            console.log('You will tell the truth!');
+        }
+    }
+
+    //Math https://www.w3schools.com/js/js_math.asp
+    console.log('height before:' + wonderWoman.height);
+    wonderWoman.height = Math.round(wonderWoman.height);
+    console.log('height after:' + wonderWoman.height);
+    //Date
+    var timeStamp = new Date();
+    wonderWoman.updates = timeStamp.toLocaleTimeString();
+
+    //JSON parse() and stringify()
+    var wwString = JSON.stringify(wonderWoman);
+    console.log(wwString);
+
+    //RegExp by /[a-zA-Z]+ing$/; ||
+    const pattern = new RegExp('[a-zA-Z]+ing$');
+
+    //test regex at regextester.com
+    //https://www.w3schools.com/jsref/jsref_obj_regexp.asp 
+
+
 }
