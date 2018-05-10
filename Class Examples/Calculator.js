@@ -1,3 +1,4 @@
+console.dir('document.querySelector(.calcButtons)');
 const calculator = {
     num1: 0,
     num2: 0,
@@ -10,8 +11,9 @@ const calculator = {
 //if not added to object then the object needs to be passed in.
 buttonClicked: function(button) {
     console.log(button.innerHTML);
+    console.dir(button);
     let inputBox = this.inputOutput;
-    switch (button.innerHTML) {
+    switch (button.target.innerHTML) {
         case 'M':
             break;
         case 'C':
@@ -31,6 +33,9 @@ buttonClicked: function(button) {
             //if it made it to here it's a number
             inputBox.value = inputBox.value + button.innerHTML;
     }
+
 },
 
 }
+const buttonContainer = document.querySelector('.calcButtons');
+buttonContainer.addEventListener('touchend', buttonClicked);

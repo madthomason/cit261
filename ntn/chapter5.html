@@ -15,33 +15,48 @@
         .highlighted {
             color: red;
         }
+
+        body, #ch7 {
+            display: flex;
+            flex-flow: column;
+        }
     </style>
     <script src="chapter7.js" defer></script>
 </head>
 <body>
-<h1>Chapter 5</h1>
-<p id="numchucks">id="numchucks"</p>
-<button onclick="tryObject()">tryObject()</button>
-<button onclick="nestedObjects()">nestedObjects()</button>
-<button onclick="builtIn()">builtIn()</button>
+<div id="ch5">
+    <h1>Chapter 5</h1>
+    <p id="numchucks">id="numchucks"</p>
+    <button onclick="tryObject()">tryObject()</button>
+    <button onclick="nestedObjects()">nestedObjects()</button>
+    <button onclick="builtIn()">builtIn()</button>
+</div>
+<div id="ch6">
+    <h1>Chapter 6</h1>
+    <button onclick="theDOM()">theDOM()</button>
 
-
-<h1>Chapter 6</h1>
-<button onclick="theDOM()">theDOM()</button>
-
-<h1 id='title'>Justice League</h1>
-<ul id='roster'>
-    <li class='hero'>Superman</li>
-    <li class='vigilante hero' id='bats'>Batman</li>
-    <li class='hero' id="">Wonder Woman</li>
-</ul>
-
-
-<h1>Chapter 7</h1>
-<p id='click'>Click On Me</p>
-<p id='dblclick'>Double Click On Me</p>
-<p id='mouse'>Hover On Me</p>
-
+    <h1 id='title'>Justice League</h1>
+    <ul id='roster'>
+        <li class='hero'>Superman</li>
+        <li class='vigilante hero' id='bats'>Batman</li>
+        <li class='hero' id="">Wonder Woman</li>
+    </ul>
+</div>
+<div id="ch7">
+    <h1>Chapter 7</h1>
+    <div id="eventListeners">
+        <p id='click'>Click On Me</p>
+        <p id='dblclick'>Double Click On Me</p>
+        <p id='mouse'>Hover On Me</p>
+    </div>
+    <div id="bubbling">
+        <ul id='list'>
+            <li>one</li>
+            <li>two</li>
+            <li>three</li>
+        </ul>
+    </div>
+</div>
 <!-- or async (at the same time as) or defer (after loaded) -->
 <script src="chapter5.js"></script>
 <script src="chapter6.js"></script>
