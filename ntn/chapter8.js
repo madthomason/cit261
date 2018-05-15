@@ -57,3 +57,5 @@ hero.category = form.category.value;
 for (let i = 0; i < form.category.length; i++) {
     if (form.category[i].)
 }
+//can be done with html checked attribute
+form.type[2].value = 'checked';
