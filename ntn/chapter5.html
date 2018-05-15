@@ -61,6 +61,29 @@
 <div id="ch8">
     <h1>Chapter 8</h1>
     <div id="forms">
+        <form name='search' action='/search'>
+            <input name='searchInput'>
+            <button type='submit'>Search</button>
+        </form>
+    </div>
+    <div>
+        <form id='hero'>
+            <label for='heroName'>Name: <input type='text' id='heroName' name='heroName' autofocus
+                                               placeholder='Your Super Hero Name' maxlength=32> </label>
+            <button type='submit'>Submit</button>
+        </form>
+    </div>
+    <div>
+        <p>Super Powers:</p>
+        <label for='flight'>Flight:
+            <input type='checkbox' id='flight' value='Flight' name='powers'></label>
+        <label for='strength'>Super Strength:
+            <input type='checkbox' id='strength' value='Strength' name='powers'> </label>
+        <label for='speed'>Super Speed: <input type='checkbox' id='speed' value='Super Speed' name='powers'> </label>
+        <label for='energy'>Energy Blasts: <input type='checkbox' id='energy' value='Energy Blasts' name='powers'>
+        </label>
+        <label for='telekinesis'>Telekinesis: <input type='checkbox' id='telekinesis' value='Telekinesis' name='powers'>
+    </label>
 
     </div>
 </div>
