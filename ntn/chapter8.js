@@ -51,3 +51,9 @@ for (let i = 0; i < form.powers.length; i++) {
         hero.powers.push(form.powers[i].value);
     }
 }
+//radio buttons
+form.category;
+hero.category = form.category.value;
+for (let i = 0; i < form.category.length; i++) {
+    if (form.category[i].)
+}
