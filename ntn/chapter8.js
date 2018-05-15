@@ -1,5 +1,6 @@
 //Forms
-const form = document.forms['search'];
+//const form = document.forms['search'];
+const form = document.forms.hero;
 const input = form['searchInput'];
 
 input.value = 'search here';
@@ -59,3 +60,12 @@ for (let i = 0; i < form.category.length; i++) {
 }
 //can be done with html checked attribute
 form.type[2].value = 'checked';
+
+form.age;
+hero.age = form.age.value;
+//drop down list
+form.city;
+hero.city = form.city.value;
+form.origin;
+hero.origin = form.origin.value;
+//button types= [submit, reset, button, menu, ect]
