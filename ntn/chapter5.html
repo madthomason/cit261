@@ -25,6 +25,7 @@
     <script src="chapter8.js" defer></script>
 </head>
 <body>
+//em, ch , vw (viewport width), vh (v height) %, vmin, vmax for landscape or portrait
 <div id="ch5">
     <h1>Chapter 5</h1>
     <p id="numchucks">id="numchucks"</p>
@@ -86,7 +87,7 @@
         <label for='hero'>Hero: <input type='radio' name='category' value='Hero' id='heroType'> </label>
         <label for='villain'>Villain: <input type='radio' name='category' value='Villain' id='villain'> </label>
         <label for='anti-hero'>Anti-Hero: <input type='radio' name='category' value='Antihero' id='anti-hero'> </label>
-        <label for='age'> <input type='number' name='age' id="age" min=0 step=1> </label>
+        <label for='age'>Age: <input type='number' name='age' id="age" min=0 step=1> </label>
 
         <label for='City'>Base of Operations: <select name='city' id='city'>
             <option value='' selected>Choose a City</option>
@@ -96,7 +97,8 @@
             <option value='Coast City'>Coast City</option>
             <option value='Star City'>Star City</option>
         </select> </label>
-        <label for='origin'> <textarea name='origin' id="origin" rows=60 cols='20' placeholder="Origin Story">
+        <label for='origin'>Origin Story: <textarea name='origin' id="origin" rows=20 cols='20'
+                                                    placeholder="Along time ago in a land far far away...">
         </textarea> </label>
         </form>
     </div>
