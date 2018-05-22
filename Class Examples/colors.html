@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5/22 Arrays</title>
+</head>
+<body>
+<p id="colorsParagraph"></p>
+<script>
+    const colors = ['green', 'yellow', 'red', 'brown', 'purple'];
+    const numbers = [1, 23, 54, 234, 246, 952, -243];
+    //colors.forEach(){
+//for (let color of colors)
+    for (var i = 0; i < colors.length; i++) {
+        document.getElementById("colorsParagraph").innerHTML += "<p style= 'color: " + colors[i] + "' >" + colors[i] + "</p>";
+        // document.getElementById("colorsParagraph").style.color = parse(colors[i]);
+    }
+    const negNumbers = numbers.map(number => number * -1);
+    console.dir(numbers);
+    console.dir(negNumbers);
+</script>
+
+</body>
+</html>

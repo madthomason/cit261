@@ -1,0 +1,22 @@
+#header {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    font-size: 133%;
+    align-items: center;
+}
+#header button {
+    margin: 1em;
+    background-color: transparent;
+    border: solid black;
+    height: 3.5em;
+    width: 3.5em;
+    cursor:pointer;
+
+}
+
+#search {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
