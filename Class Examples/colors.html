@@ -6,11 +6,44 @@
 </head>
 <body>
 <p id="colorsParagraph"></p>
+<p id="objectsParagraph"></p>
+<input type="text" id="eyeColor">
+<button type="submit" id="button">Eye Color</button>
 <script>
     const colors = ['green', 'yellow', 'red', 'brown', 'purple'];
     const numbers = [1, 23, 54, 234, 246, 952, -243];
+    const siblings = [{
+        name: "Mindy",
+        relationship: "Sister",
+        eyes: "darkBlue",
+        height: 5.2,
+    },
+        {
+            name: "Mackensey",
+            relationship: "Sister",
+            eyes: "lightBlue",
+            height: 5.4,
+        },
+        {
+            name: "KK",
+            relationship: "Sister",
+            eyes: "darkBlue",
+            height: 5.5,
+        },
+        {
+            name: "Ben",
+            relationship: "Brother",
+            eyes: "LightBlue",
+            height: 5,
+        },
+        {
+            name: "Mari",
+            relationship: "Sister",
+            eyes: "darkBlue",
+            height: 4,
+        },];
     //colors.forEach(){
-//for (let color of colors)
+    //for (let color of colors)
     for (var i = 0; i < colors.length; i++) {
         document.getElementById("colorsParagraph").innerHTML += "<p style= 'color: " + colors[i] + "' >" + colors[i] + "</p>";
         // document.getElementById("colorsParagraph").style.color = parse(colors[i]);
@@ -18,6 +51,22 @@
     const negNumbers = numbers.map(number => number * -1);
     console.dir(numbers);
     console.dir(negNumbers);
+
+    //filtering
+    const button = document.getElementById("button");
+    const input = document.getElementById("eyeColor").value;
+    button.addEventListener('submit', searchEyes(siblings, input), false);
+
+    //item.indexOf("string from item") > -1 but case sensitive (make everything lowercase with .toLowerCase().indexOf
+    function searchEyes(siblingsL, input) {
+        const filterHeight = siblingsL.filter(el => el.height <= 5.2);
+        const filtered = siblingsL.filter(el => el.relationship === "Sister");
+        const filterInput = siblingsL.filter(el => el.eyes.toLowerCase().indexOf(input.toLowerCase()) > -1);
+        console.log(filterHeight, filtered, filterInput);
+    }
+
+    //random#
+    console.log(Math.ceil(Math.random()*6));
 </script>
 
 </body>

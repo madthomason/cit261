@@ -6,28 +6,56 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
           integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link rel="stylesheet" href="hotl.css">
+    <script src="hotl.js" defer></script>
 </head>
 <body>
-<div id="header">
-    <h1>Hand of the Lord Journal</h1>
-    <button>🖉</button>
+<!--//Home page listing entries-->
+<div id="home">
+    <div class="header">
+        <h1>Hand of the Lord Journal</h1>
+        <button id="edit">🖉</button>
 
-</div>
-<hr>
-<div id="search">
-    <form>
-        <label><i class="fas fa-search"></i><input type="text"></label>
-    </form>
-</div>
-<hr>
-<div id="entry">
-    <h2 id="title">Title</h2>
-    <div id="entryTD">
-    <p id="text">this is the start of the entry...</p>
-    <p id="date">5/22/2018</p>
     </div>
     <hr>
+    <div id="search">
+        <form>
+            <label><i class="fas fa-search"></i><input type="text"></label>
+        </form>
+    </div>
+    <hr>
+    <div id="entry">
+        <h2 id="title">Title</h2>
+        <div id="entryTD">
+            <p id="text">this is the start of the entry...</p>
+            <p id="date">5/22/2018</p>
+        </div>
+        <hr>
+    </div>
+
 </div>
-/
+
+<!--//Entry Page for individual items and pages-->
+<div id="entryPage">
+    <!--display mode-->
+    <div id="display">
+        <div class="header">
+            <button id="back"><i class="fas fa-arrow-left"></i></button>
+            <h1 id="titleEntry">Hand of the Lord Journal</h1>
+            <button id="editButton">🖉</button>
+
+        </div>
+        <hr>
+        <p id="textFull">this is the start of the entry...</p>
+        <p id="dateEntry">5/22/2018</p>
+        <img>
+    </div>
+    <!--editable mode-->
+    <div id="editPage">
+        <input type="text" id="editTitle">
+        <input type="date" id="editDate">
+        <textarea id="editEntry" required></textarea>
+        <input type="file" id="editFile">
+        <button id="saveEdit">Save</button>
+    </div>
 </body>
 </html>

@@ -1,11 +1,11 @@
-#header {
+.header {
     display: flex;
     flex-flow: row;
     justify-content: space-around;
     font-size: 133%;
     align-items: center;
 }
-#header button {
+.header button {
     margin: 1em;
     background-color: transparent;
     border: solid black;
@@ -19,4 +19,8 @@
     display: flex;
     flex-flow: row;
     justify-content: center;
+}
+
+#entryPage {
+    display: none;
 }
