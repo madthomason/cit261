@@ -14,7 +14,7 @@ function switchPage() {
     if (home.style.display === "none") {
         home.style.diplay = "block";
         entry.style.display = "none";
-    } else {
+    } else if (entry.style.display === "none") {
 
         home.style.display = "none";
         entry.style.display = "block";
@@ -26,7 +26,7 @@ function editEntry() {
     if (editPage === "none") {
         editPage.style.display = "block";
         display.style.display = "none";
-    } else {
+    } else if (editpage === "block") {
         display.style.display = "block";
         editPage.style.display = "none";
     }

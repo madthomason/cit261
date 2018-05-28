@@ -54,15 +54,17 @@
 
     //filtering
     const button = document.getElementById("button");
-    const input = document.getElementById("eyeColor").value;
-    button.addEventListener('submit', searchEyes(siblings, input), false);
+
+
+    button.addEventListener('click', searchEyes);
 
     //item.indexOf("string from item") > -1 but case sensitive (make everything lowercase with .toLowerCase().indexOf
-    function searchEyes(siblingsL, input) {
-        const filterHeight = siblingsL.filter(el => el.height <= 5.2);
-        const filtered = siblingsL.filter(el => el.relationship === "Sister");
-        const filterInput = siblingsL.filter(el => el.eyes.toLowerCase().indexOf(input.toLowerCase()) > -1);
-        console.log(filterHeight, filtered, filterInput);
+    function searchEyes(event) {
+        const input = document.getElementById("eyeColor").value;
+        const filterHeight = siblings.filter(el => el.height <= 5.2);
+        const filtered = siblings.filter(el => el.relationship === "Sister");
+        const filterInput = siblings.filter(el => el.eyes.toLowerCase().indexOf(input.toLowerCase()) > -1);
+        console.log(filterHeight, filtered, filterInput, event);
     }
 
     //random#
