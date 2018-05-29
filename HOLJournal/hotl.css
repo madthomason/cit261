@@ -14,7 +14,16 @@
     cursor:pointer;
 
 }
+#home {
+    display: block;
+}
+#entryPage {
+    display: none;
+}
 
+.hidden {
+    display: none;
+}
 #search {
     display: flex;
     flex-flow: row;
