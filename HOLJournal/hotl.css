@@ -53,7 +53,7 @@ body {
     background-color: transparent;
 
 }
-#save img {
-    height: 3rem;
-    width: 1rem;
+#save i, #cancel i {
+    font-size: 3em;
+    color: blue;
 }
