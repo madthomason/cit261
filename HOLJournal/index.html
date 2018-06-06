@@ -23,37 +23,48 @@
         </form>
     </div>
     <hr>
-    <div id="entry">
-        <h2 id="title">Title</h2>
-        <div id="entryTD">
-            <p id="text">this is the start of the entry...</p>
-            <p id="date">5/22/2018</p>
+    <div id="entriesDisplay">
+        <div id="entry" itemid="1" onclick="switchPage(true, this)">
+            <h2 id="title">Title</h2>
+            <div id="entryTD">
+                <p id="text">this is the start of the entry...</p>
+                <p id="date">5/22/2018</p>
+            </div>
+            <hr>
         </div>
-        <hr>
     </div>
-
 </div>
 
 <!--//Entry Page for individual items and pages-->
-<div id="entryPage">
+<div id="entryPage" class="hidden">
     <!--display mode-->
     <div id="display">
         <div class="header">
-            <button id="back"><i class="fas fa-arrow-left"></i></button>
+            <button class="back"><i class="fas fa-arrow-left"></i></button>
             <h1 id="titleEntry">Title</h1>
         </div>
         <hr>
         <p id="textFull">this is the start of the entry...</p>
         <p id="dateEntry">5/22/2018</p>
-        <img>
+        <img src=""/>
     </div>
     <!--editable mode-->
-    <div id="editPage">
-        <input type="text" id="editTitle">
-        <input type="date" id="editDate">
-        <textarea id="editEntry" required></textarea>
-        <input type="file" id="editFile">
-        <button id="saveEdit">Save</button>
+    <div id="editPage" class="hidden">
+        <div class="header">
+            <button class="back"><i class="fas fa-arrow-left"></i></button>
+            <input type="text" id="editTitle" placeholder="Title"/>
+
+        </div>
+        <hr>
+
+        <textarea id="editEntry" placeholder="
+        Today I saw the hand of the Lord in my life..." required></textarea>
+        <input type="date" id="editDate"/>
+        <label><i class="fas fa-upload"></i></label><input type="file" id="editFile">
+        <button id="cancel"><i class="fas fa-trash-alt"></i></button>
+        <button id="save"><i class="fas fa-bookmark"></i></button>
+
     </div>
+</div>
 </body>
 </html>

@@ -46,7 +46,8 @@
         let hikeListElement = document.getElementById("hike");
         hikeListElement.innerHTML = '';
         hikeList.map(hike => {
-            hikeListElement.appendChild(createHike(hike));
+            renderHike(hike);
+            //hikeListElement.appendChild(createHike(hike));
         });
         //createHike(hikeList[0]);
     });
@@ -64,6 +65,13 @@ function createHike(hike) {
     item.appendChild(document.createElement("div").appendChild(document.createTextNode(hike.description)));
     item.appendChild(document.createElement("div").appendChild(document.createTextNode(hike.directions)));
     return item;
+}
+
+function renderHike(hike) {
+    return ' <li> ' +
+        '<img src=${hike.imgSrc}" alt="${hike.imgAlt}"> ' +
+        '<h2>${hike.name}</h2>' +
+        '</li>'
 }
 </script>
 </body>

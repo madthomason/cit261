@@ -14,22 +14,46 @@
     cursor:pointer;
 
 }
-#home {
-    display: block;
-}
-#entryPage {
-    display: none;
-}
 
 .hidden {
     display: none;
 }
+
 #search {
     display: flex;
     flex-flow: row;
     justify-content: center;
 }
-
 #entryPage {
-    display: none;
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVXyfRrFvtx8gymRSxOx98EmE7lfqlQbWs8yDIuDjYed5jOdYN");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+textarea {
+    margin-left: 5vw;
+
+    font-family: "Bradley Hand ITC";
+    font-size: 2em;
+    width: 80vw;
+    height: 60vh;
+    background-image: url("https://i.pinimg.com/originals/58/d7/37/58d737cbf71dec606949192b1f8a8169.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#display, #editPage {
+    height: 100vh;
+}
+
+body {
+    font-family: "Bradley Hand ITC";
+}
+
+#save, #cancel {
+    border: none;
+    background-color: transparent;
+
+}
+#save img {
+    height: 3rem;
+    width: 1rem;
 }
