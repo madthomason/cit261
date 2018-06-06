@@ -31,9 +31,11 @@
 }
 textarea {
     margin-left: 5vw;
-
+    padding-top: 1.7em;
+    padding-left: 1em;
     font-family: "Bradley Hand ITC";
-    font-size: 2em;
+    font-size: 1.5em;
+    line-height: 75%;
     width: 80vw;
     height: 60vh;
     background-image: url("https://i.pinimg.com/originals/58/d7/37/58d737cbf71dec606949192b1f8a8169.jpg");
@@ -46,14 +48,26 @@ textarea {
 
 body {
     font-family: "Bradley Hand ITC";
+    margin: 0px;
 }
-
+#editFile {
+    visibility: hidden;
+}
+#editFile label {
+    font-size: 3rem;
+    color: blue;
+}
 #save, #cancel {
     border: none;
     background-color: transparent;
 
 }
 #save i, #cancel i {
-    font-size: 3em;
+    font-size: 3rem;
     color: blue;
+}
+input[type=text] {
+    font-size: 3rem;
+    font-family: "Bradley Hand ITC";
+    text-align: center;
 }
