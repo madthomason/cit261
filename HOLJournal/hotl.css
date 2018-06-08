@@ -32,7 +32,7 @@ textarea {
     margin-left: 5vw;
     padding-top: 1.7em;
     padding-left: 1em;
-    font-family: "Bradley Hand ITC";
+    font-family: 'Indie Flower', cursive;
     font-size: 1.5em;
     line-height: 75%;
     width: 80vw;
@@ -46,7 +46,7 @@ textarea {
 }
 
 body {
-    font-family: "Bradley Hand ITC";
+    font-family: 'Indie Flower', cursive;
     margin: 0px;
 }
 #editFile {
@@ -67,6 +67,16 @@ body {
 }
 input[type=text] {
     font-size: 3rem;
-    font-family: "Bradley Hand ITC";
+    font-family: 'Indie Flower', cursive;
     text-align: center;
+}
+
+p {
+    font-size: 3rem;
+}
+
+.entryTD {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
 }
