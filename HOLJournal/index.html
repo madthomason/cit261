@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hand of the Lord Journal</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+          integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="hotl.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+    </style>
+    <script src="hotl.js" defer></script>
+</head>
+<body>
+<!--//Home page listing entries-->
+<div id="home">
+    <div class="header">
+        <h1>Hand of the Lord Journal</h1>
+        <button id="edit">🖉</button>
+
+    </div>
+    <hr>
+    <div id="search">
+        <form>
+            <label><i class="fas fa-search"></i><input type="text" placeholder="search"></label>
+        </form>
+    </div>
+    <hr>
+    <ul id="entriesDisplay">
+        <!--<li id="entry" itemid="1" onclick="switchPage(true, this)">
+            <h2 id="title">Title</h2>
+            <div id="entryTD">
+                <p id="text">this is the start of the entry...</p>
+                <p id="date">5/22/2018</p>
+            </div>
+            <hr>
+        </li>-->
+    </ul>
+</div>
+
+<!--//Entry Page for individual items and pages-->
+<div id="entryPage" class="hidden">
+    <!--display mode-->
+    <div id="display">
+        <div class="header">
+            <button class="back"><i class="fas fa-arrow-left"></i></button>
+            <h1 id="titleEntry">Title</h1>
+            <p id="dateEntry">5/22/2018</p>
+        </div>
+        <hr>
+        <p id="textFull">this is the start of the entry...</p>
+
+        <img src=""/>
+    </div>
+    <!--editable mode-->
+    <div id="editPage" class="hidden">
+        <div class="header">
+            <button class="back"><i class="fas fa-arrow-left"></i></button>
+            <input type="text" id="editTitle" placeholder="Title"/>
+            <input type="date" id="editDate"/>
+        </div>
+        <hr>
+
+        <textarea id="editEntry" placeholder="
+        Today I saw the hand of the Lord in my life..." required></textarea>
+
+        <label><i class="fas fa-upload"> Upload Memories</i></label><input type="file" id="editFile">
+        <button id="cancel"><i class="fas fa-trash-alt"></i></button>
+        <button id="save"><i class="fas fa-bookmark"></i></button>
+
+    </div>
+</div>
+</body>
+</html>

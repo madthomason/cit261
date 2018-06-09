@@ -1,0 +1,101 @@
+.header {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    font-size: 200%;
+    align-items: center;
+}
+.header button {
+    margin: 1em;
+    background-color: transparent;
+    border: solid black;
+    height: 3.5em;
+    width: 3.5em;
+    cursor:pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+#search {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
+#entryPage {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVXyfRrFvtx8gymRSxOx98EmE7lfqlQbWs8yDIuDjYed5jOdYN");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+textarea {
+    margin-left: 5vw;
+    padding-top: 1.7em;
+    padding-left: 1em;
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.5em;
+    line-height: 75%;
+    width: 80vw;
+    height: 60vh;
+    background-image: url("https://i.pinimg.com/originals/58/d7/37/58d737cbf71dec606949192b1f8a8169.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#display, #editPage {
+    height: 100vh;
+}
+
+body {
+    font-family: 'Indie Flower', cursive;
+    margin: 0px;
+}
+#editFile {
+    visibility: hidden;
+}
+#editFile label {
+    font-size: 3rem;
+    color: blue;
+}
+#save, #cancel {
+    border: none;
+    background-color: transparent;
+
+}
+#save i, #cancel i {
+    font-size: 3rem;
+    color: blue;
+}
+input[type=text] {
+    font-size: 3rem;
+    font-family: 'Indie Flower', cursive;
+    text-align: center;
+}
+
+.title {
+    font-size: 3.5rem;
+    font-weight: bold;
+}
+
+p {
+    font-size: 3rem;
+}
+
+ul {
+    list-style-type: none;
+}
+li {
+    margin: 1rem;
+
+}
+.entryTD {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+}
+
+.text {
+    flex-grow: 2;
+}
+.date {
+    flex-basis: 200px;
+}
