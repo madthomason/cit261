@@ -2,7 +2,7 @@
     display: flex;
     flex-flow: row;
     justify-content: space-around;
-    font-size: 133%;
+    font-size: 200%;
     align-items: center;
 }
 .header button {
@@ -71,12 +71,31 @@ input[type=text] {
     text-align: center;
 }
 
+.title {
+    font-size: 3.5rem;
+    font-weight: bold;
+}
+
 p {
     font-size: 3rem;
 }
 
+ul {
+    list-style-type: none;
+}
+li {
+    margin: 1rem;
+
+}
 .entryTD {
     display: flex;
     flex-flow: row;
     justify-content: space-around;
+}
+
+.text {
+    flex-grow: 2;
+}
+.date {
+    flex-basis: 200px;
 }

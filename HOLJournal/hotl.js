@@ -127,17 +127,26 @@ function displayEntry(entry) {
 
 function displayHomeList() {
     localStorage.removeItem("");
-    var storedEntries = localStorage.getItem("all_entries");
-    var allEntries = JSON.parse(storedEntries);
+    let storedEntries = localStorage.getItem("all_entries");
+    let allEntries = JSON.parse(storedEntries);
     if (allEntries) {
-        var displayer = document.getElementById("entriesDisplay");
+        let displayer = document.getElementById("entriesDisplay");
         displayer.innerHTML = null;
-        var numberOfEntries = allEntries.length;
-        for (var i = numberOfEntries - 1; i >= 0; i--) {
+        let numberOfEntries = allEntries.length;
+        for (let i = numberOfEntries - 1; i >= 0; i--) {
+            let title;
+            let date = allEntries[i].date;
+            if (allEntries[i].title) {
+                title = allEntries[i].title;
+            }
+            else {
+                title = allEntries[i].date;
+                date = '';
+            }
             displayer.innerHTML += ' <li id="' + allEntries[i].title + '" itemid="' + i +
-                '" ontouchend="switchPage(true, this)"> ' + '<h1 class="title">' + allEntries[i].title + '</h1>' +
-                ' <div class="entryTD"> ' +  '<p class="text">' + allEntries[i].text + '</p> <p class="date">' +
-                allEntries[i].date + '</p> </div> <hr> </li>';
+                '" ontouchend="switchPage(true, this)"> ' + '<h1 class="title">' + title + '</h1>' +
+                ' <div class="entryTD"> ' +  '<p class="text">' + String(allEntries[i].text).substring(0, 45) + '</p> <p class="date">' +
+                date + '</p> </div> <hr> </li>';
             //\''+ JSON.stringify(allEntries[i]) +'\'
         }
     }
