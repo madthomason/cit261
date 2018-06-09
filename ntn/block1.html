@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Novice to Ninja</title>
+    <style>
+        #ch7 p {
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+            background-color: #ccc;
+            float: left;
+        }
+
+        .highlighted {
+            color: red;
+        }
+
+        body, #ch7 {
+            display: flex;
+            flex-flow: column;
+        }
+
+        .error {
+            background: #f99;
+            border: #900 1px solid;
+            display: none
+        }
+    </style>
+    <script src="chapter7.js" defer></script>
+    <script src="chapter8.js" defer></script>
+</head>
+<body>
+//em, ch , vw (viewport width), vh (v height) %, vmin, vmax for landscape or portrait
+<div id="ch5">
+    <h1>Chapter 5</h1>
+    <p id="numchucks">id="numchucks"</p>
+    <button onclick="tryObject()">tryObject()</button>
+    <button onclick="nestedObjects()">nestedObjects()</button>
+    <button onclick="builtIn()">builtIn()</button>
+</div>
+<div id="ch6">
+    <h1>Chapter 6</h1>
+    <button onclick="theDOM()">theDOM()</button>
+
+    <h1 id='title'>Justice League</h1>
+    <ul id='roster'>
+        <li class='hero'>Superman</li>
+        <li class='vigilante hero' id='bats'>Batman</li>
+        <li class='hero' id="">Wonder Woman</li>
+    </ul>
+</div>
+<div id="ch7">
+    <h1>Chapter 7</h1>
+    <div id="eventListeners">
+        <p id='click'>Click On Me</p>
+        <p id='dblclick'>Double Click On Me</p>
+        <p id='mouse'>Hover On Me</p>
+    </div>
+    <div id="bubbling">
+        <ul id='list'>
+            <li>one</li>
+            <li>two</li>
+            <li>three</li>
+        </ul>
+    </div>
+</div>
+<div id="ch8">
+    <h1>Chapter 8</h1>
+    <div id="forms">
+        <form name='search' action='/search'>
+            <input name='searchInput'>
+            <button type='submit'>Search</button>
+        </form>
+    </div>
+    <div>
+        <form id='hero'>
+            <label for='heroName'>Name: <input type='text' id='heroName' name='heroName' autofocus disabled
+                                               placeholder='Your Super Hero Name' maxlength=32> </label>
+            <button type='submit'>Submit</button>
+
+            <p>Super Powers:</p>
+            <label for='flight'>Flight:
+                <input type='checkbox' id='flight' value='Flight' name='powers'></label>
+            <label for='strength'>Super Strength:
+                <input type='checkbox' id='strength' value='Strength' name='powers'> </label>
+            <label for='speed'>Super Speed: <input type='checkbox' id='speed' value='Super Speed' name='powers'>
+            </label>
+            <label for='energy'>Energy Blasts: <input type='checkbox' id='energy' value='Energy Blasts' name='powers'>
+            </label>
+            <label for='telekinesis'>Telekinesis: <input type='checkbox' id='telekinesis' value='Telekinesis'
+                                                         name='powers'>
+            </label>
+            <p>What type of hero are you?</p>
+            <label for='hero'>Hero: <input type='radio' name='category' value='Hero' id='heroType'> </label>
+            <label for='villain'>Villain: <input type='radio' name='category' value='Villain' id='villain'> </label>
+            <label for='anti-hero'>Anti-Hero: <input type='radio' name='category' value='Antihero' id='anti-hero'>
+            </label>
+            <label for='age'>Age: <input type='number' name='age' id="age" min=0 step=1> </label>
+
+            <label for='City'>Base of Operations: <select name='city' id='city'>
+                <option value='' selected>Choose a City</option>
+                <option value='Metropolis'>Metropolis</option>
+                <option value='Gotham City'>Gotham City</option>
+                <option value='Keystone City'>Keystone City</option>
+                <option value='Coast City'>Coast City</option>
+                <option value='Star City'>Star City</option>
+            </select> </label>
+            <label for='origin'>Origin Story: <textarea name='origin' id="origin" rows=20 cols='20'
+                                                        placeholder="Along time ago in a land far far away...">
+        </textarea> </label>
+        </form>
+    </div>
+</div>
+
+<!-- or async (at the same time as) or defer (after loaded) -->
+<script src="chapter5.js"></script>
+<script src="chapter6.js"></script>
+</body>
+</html>
