@@ -77,7 +77,7 @@ function editEntry(bool) {
 
 function saveEntry() {
     const entry = {};
-
+//https://www.c-sharpcorner.com/UploadFile/5089e0/database-connectivity-in-javascript/
     entry.title = document.getElementById("editTitle").value;
     entry.date = document.getElementById("editDate").value;
     entry.text = document.getElementById("editEntry").value;
