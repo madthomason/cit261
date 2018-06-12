@@ -201,4 +201,22 @@ function variance(array) {
     return sum(array, square) / array.length - square(mean(array))
 }
 
-//Higher Order
+//Higher-Order: accepts another function as an argument, returns another function as a result, or both
+//Currying
+function multiplier(x, y) {
+    if (y === undefined) {
+        return function (z) {
+            return x * z;
+        }
+    } else {
+        return x * y;
+    }
+}
+//general
+function curry(func, ...oldArgs) {
+    return function (...newArgs) {
+        const allArgs = [...oldArgs, ...newArgs];
+        return func(...allArgs);
+    }
+}
+
