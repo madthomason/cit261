@@ -157,10 +157,10 @@ function* fibonacci(a, b) {
         yield current;
     }
 }
-
+/*
 const sequence = fibonacci(1, 1);
 for (n of sequence)
-    console.log(sequence.next());
+    console.log(sequence.next());*/
 
 //pure functions: at lease 1 argument and return value.
 let number = 42;
@@ -177,7 +177,7 @@ console.log(result);
 //pure: Becomes a building block
 // It doesn’t rely on values from somewhere else in the program,
 // returns new values, rather than altering any of the underlying data.
-const number = 42;
+const num = 42;
 
 function pureAdd(x, y) {
     return x + y;
