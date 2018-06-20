@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Audio and Video</title>
+</head>
+<body>
+<h1>Video and Audio output</h1>
+<p>Native controls with controls.
+    Attributes: autoplay, loop, preload(auto, none, and metadata), poster(teaser image to spark interest), and muted</p>
+<p>support for multiple areas is often necessary so specify type and have multiple child source-tags</p>
+<p>
+    <video width="375" height="280" poster="teaser.jpg" audio="muted">
+        <source src="example.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+</p>
+<p> "you could also provide an optional download video link that allows the user to access a local copy
+    of the video and view it at their leisure." </p>
+<video src="example.webm" width="375" height="280" controls></video>
+
+<p>own controls</p>
+<div id="controls" class="hidden">
+    <a id="playPause">Play/Pause</a>
+    <span id="timer">00:00</span>
+    <a id="muteUnmute">Mute/Unmute</a>
+
+
+    <script>
+        var videoEl = document.getElementsByTagName('video')[0],
+            playPauseBtn = document.getElementById('playPause'),
+            vidControls = document.getElementById('controls'),
+            muteBtn = document.getElementById('muteUnmute'),
+            timeHolder = document.getElementById('timer');
+        videoEl.removeAttribute('controls');
+
+        videoEl.addEventListener('canplaythrough', function () {
+            vidControls.classList.remove('hidden');
+        }, false);
+
+        playPauseBtn.addEventListener('click', function () {
+            if (videoEl.paused) {
+                videoEl.play();
+            } else {
+                videoEl.pause();
+            }
+        }, false);
+    </script>
+</div>
+</body>
+</html>
