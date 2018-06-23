@@ -1,23 +1,20 @@
-#video-container {
+.vc {
 
     width: 373px;
 
     margin: 0 auto;
 
-    position: relative; }
-
-
+    position: relative;
+}
 
 video {
 
     display: block;
 
-    margin-bottom: 12px; }
-
-
+    margin-bottom: 12px;
+}
 
 video,
-
 .content h1 {
 
     -webkit-column-span: all;
@@ -26,35 +23,8 @@ video,
 
     column-span: all;
 
-    clear: both; }
-
-
-
-.cnvs {
-
-    position: absolute;
-
-    top: 0;
-
-    left: 0;
-
-    /* to avoid seeing the video in color for a second before the JavaScript runs
-
-     * show a black background instead */
-
-    background-color: black;
-
-    margin-bottom: 25px; }
-
-
-
-.myCanvas {
-
-    border: 2px dotted black;
-
-    margin: 0 20px; }
-
-
+    clear: both;
+}
 
 .vc {
 
@@ -62,12 +32,13 @@ video,
 
     margin: 0 auto;
 
-    position: relative; }
+    position: relative;
+}
 
-
-
-.ctrl {
-
+#controls {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
     position: absolute;
 
     bottom: 0px;
@@ -76,23 +47,21 @@ video,
 
     -webkit-transition: opacity .7s linear;
 
-    transition: opacity .7s linear; }
+    transition: opacity .7s linear;
+}
 
-.ctrl:hover {
+#controls:hover {
 
-    opacity: 1; }
-
-
+    opacity: 1;
+}
 
 .hidden {
 
-    display: none; }
+    display: none;
+}
 
-
-
-.pp,
-
-.mu {
+#playPause,
+#muteUnmute {
 
     width: 25px;
 
@@ -102,27 +71,25 @@ video,
 
     text-indent: -9999em;
 
-    border-right: solid 1px #555; }
+    border-right: solid 1px #555;
+}
 
-.pp:hover,
+#playPause
+:hover,
+#muteUnmute:hover {
 
-.mu:hover {
-
-    cursor: pointer; }
-
-
+    cursor: pointer;
+}
 
 .paused {
 
-    background: #ccc url(../images/controls-sprite.png) no-repeat 0 -75px; }
-
-
+    background: #ccc url(controls-sprite.png) no-repeat 0 -75px;
+}
 
 .playing {
 
-    background-position: 0 -50px; }
-
-
+    background-position: 0 -50px;
+}
 
 .timer {
 
@@ -138,31 +105,27 @@ video,
 
     line-height: 25px;
 
-    overflow: hidden; }
+    overflow: hidden;
+}
 
-
-
-.mu {
+#muteUnmute {
 
     overflow: hidden;
 
     border-right: none;
 
-    border-left: solid 1px #555; }
-
-
+    border-left: solid 1px #555;
+}
 
 .unmuted {
 
-    background: #ccc url(../images/controls-sprite.png) no-repeat 0 -25px; }
-
-
+    background: #ccc url(controls-sprite.png) no-repeat 0 -25px;
+}
 
 .muted {
 
-    background-position: 0 0; }
-
-
+    background-position: 0 0;
+}
 
 #canvasOverlay {
 
@@ -174,4 +137,5 @@ video,
 
     background-color: #000;
 
-    margin-bottom: 25px; }
+    margin-bottom: 25px;
+}
