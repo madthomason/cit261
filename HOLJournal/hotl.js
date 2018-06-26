@@ -1,7 +1,9 @@
 //const entries = localStorage.getItem();
 
 //event listeners:
-window.addEventListener('load', function () {displayHomeList();});
+window.addEventListener('load', function () {
+    displayHomeList();
+});
 
 
 //edit pencil on home hide: home, entry->display
@@ -25,7 +27,7 @@ back[1].addEventListener('touchend', function () {
 //edit display hide: home, entry->display sending in the entry
 const displayToEdit = document.getElementById("display");
 displayToEdit.addEventListener('touchend', function () {
-    editEntry(true);
+    editEntry();
 });
 
 const save = document.getElementById("save");
@@ -49,6 +51,8 @@ cancel.addEventListener('touchend', function () {
 function switchPage(read, element) {
     const home = document.getElementById('home');
     const entryPage = document.getElementById('entryPage');
+    const display = document.getElementById("display");
+    const editPage = document.getElementById("editPage");
     home.classList.toggle("hidden");
     entryPage.classList.toggle("hidden");
 
@@ -56,23 +60,32 @@ function switchPage(read, element) {
         /*const entry = JSON.parse(element);*/
         //console.log(entry.title);
         //editEntry();
+        display.classList.remove("hidden");
+        editPage.classList.add("hidden");
     }
     if (read !== true) {
-        editEntry(true);
-
+        editEntry();
     }
 }
 
 function editEntry(bool) {
     const display = document.getElementById("display");
     const editPage = document.getElementById("editPage");
-    display.classList.toggle("hidden");
-    editPage.classList.toggle("hidden");
-    if (bool === true) {
+    if (!display.classList.contains(".hidden")) {
+        display.classList.add("hidden");
+        editPage.classList.remove("hidden");
         document.getElementsByClassName("back")[1].style.display = "none";
         document.getElementsByClassName("back").disabled = true;
         document.getElementById("editDate").value = new Date().toISOString().substring(0, 10);
     }
+    if (bool === false) {
+        display.classList.remove("hidden");
+        editPage.classList.add("hidden");
+    }
+
+
+    //from display edit the contents
+    editDisplay()
 }
 
 function saveEntry() {
@@ -104,11 +117,12 @@ function saveEntry() {
     document.getElementById("editDate").value = null;
     document.getElementById("editEntry").value = null;
     document.getElementById("editFile").value = null;
-    displayEntry(entry);
-    editEntry();
+   displayEntry(entry);
+    editEntry(false);
 }
 
 function displayEntry(entry) {
+
     let title = document.getElementById("titleEntry");
     let date = document.getElementById("dateEntry");
     let text = document.getElementById("textFull");
@@ -123,6 +137,19 @@ function displayEntry(entry) {
     text.innerHTML = entry.text;
     let files = "";
 
+}
+
+function editDisplay() {
+    let title = document.getElementById("editTitle");
+    let date = document.getElementById("editDate");
+    let text = document.getElementById("editEntry");
+
+
+
+    title.value = document.getElementById("titleEntry").innerHTML;
+    date.value = document.getElementById("dateEntry").innerHTML;
+    text.value = document.getElementById("textFull").innerHTML;
+    let files = ""; //document.getElementById("editFile");  for later
 }
 
 function displayHomeList() {
@@ -145,7 +172,7 @@ function displayHomeList() {
             }
             displayer.innerHTML += ' <li id="' + allEntries[i].title + '" itemid="' + i +
                 '" ontouchend="switchPage(true, this)"> ' + '<h1 class="title">' + title + '</h1>' +
-                ' <div class="entryTD"> ' +  '<p class="text">' + String(allEntries[i].text).substring(0, 45) + '</p> <p class="date">' +
+                ' <div class="entryTD"> ' + '<p class="text">' + String(allEntries[i].text).substring(0, 32) + '</p> <p class="date">' +
                 date + '</p> </div> <hr> </li>';
             //\''+ JSON.stringify(allEntries[i]) +'\'
         }
