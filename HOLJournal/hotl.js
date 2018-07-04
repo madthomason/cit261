@@ -1,7 +1,9 @@
 //const entries = localStorage.getItem();
 
 //event listeners:
-window.addEventListener('load', function () {displayHomeList();});
+window.addEventListener('load', function () {
+    displayHomeList();
+});
 
 
 //edit pencil on home hide: home, entry->display
@@ -82,24 +84,51 @@ function saveEntry() {
     entry.date = document.getElementById("editDate").value;
     entry.text = document.getElementById("editEntry").value;
     const file = document.getElementById("editFile").value;
-    if (file) {
+
+    //Database post
+console.log("before post");
+    const postData = (url = ``, data = {}) => {
+        // Default options are marked with *
+        return fetch(url, {
+            method: "POST", // *GET, POST, PUT, DELETE, etc.
+            mode: "no-cors",  //no-cors, cors, *same-origin
+            // cache: "no-cache",  *default, no-cache, reload, force-cache, only-if-cached
+            // credentials: "same-origin", include, same-origin, *omit
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+                // "Content-Type": "application/x-www-form-urlencoded",
+            },
+            redirect: "follow", // manual, *follow, error
+            referrer: "no-referrer", // no-referrer, *client
+            body: JSON.stringify(data), // body data type must match "Content-Type" header
+        })
+            .then(response => response.json()) // parses response to JSON
+            .catch(error => console.error(`Fetch Error =\n`, error)
+            );
+    };
+    postData(`/api/entries/`, entry)
+        .then(data => console.log(data)) // JSON from `response.json()` call
+        .catch(error => console.error(error));
+
+    console.log("after post");
+    if (file !== null) {
         /* var preview = document.querySelector('img'); //selects the query named img
          var file    = document.querySelector('input[type=file]').files[0]; //sames as here
          var reader  = new FileReader();
          https://stackoverflow.com/questions/22087076/how-to-make-a-simple-image-upload-using-javascript-html*/
-        entry.file = getBase64Image(file);
+       // entry.file = getBase64Image(file);
     } else {
         entry.file = file;
     }
 
-    var entriesStored = localStorage.getItem("all_entries");
-    var allEntries = JSON.parse(entriesStored);
-    if (allEntries == null) {
-        allEntries = [];
-    }
-    allEntries.push(entry);
-    entriesStored = JSON.stringify(allEntries);
-    localStorage.setItem("all_entries", entriesStored);
+    // var entriesStored = localStorage.getItem("all_entries");
+    // var allEntries = JSON.parse(entriesStored);
+    // if (allEntries == null) {
+    //     allEntries = [];
+    // }
+    // allEntries.push(entry);
+    // entriesStored = JSON.stringify(allEntries);
+    // localStorage.setItem("all_entries", entriesStored);
     document.getElementById("editTitle").value = null;
     document.getElementById("editDate").value = null;
     document.getElementById("editEntry").value = null;
@@ -145,7 +174,7 @@ function displayHomeList() {
             }
             displayer.innerHTML += ' <li id="' + allEntries[i].title + '" itemid="' + i +
                 '" ontouchend="switchPage(true, this)"> ' + '<h1 class="title">' + title + '</h1>' +
-                ' <div class="entryTD"> ' +  '<p class="text">' + String(allEntries[i].text).substring(0, 45) + '</p> <p class="date">' +
+                ' <div class="entryTD"> ' + '<p class="text">' + String(allEntries[i].text).substring(0, 45) + '</p> <p class="date">' +
                 date + '</p> </div> <hr> </li>';
             //\''+ JSON.stringify(allEntries[i]) +'\'
         }
