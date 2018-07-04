@@ -87,28 +87,24 @@ function saveEntry() {
 
     //Database post
 console.log("before post");
-    const postData = (url = ``, data = {}) => {
-        // Default options are marked with *
-        return fetch(url, {
-            method: "POST", // *GET, POST, PUT, DELETE, etc.
-            mode: "no-cors",  //no-cors, cors, *same-origin
-            // cache: "no-cache",  *default, no-cache, reload, force-cache, only-if-cached
-            // credentials: "same-origin", include, same-origin, *omit
-            headers: {
-                "Content-Type": "application/json; charset=utf-8",
-                // "Content-Type": "application/x-www-form-urlencoded",
-            },
-            redirect: "follow", // manual, *follow, error
-            referrer: "no-referrer", // no-referrer, *client
-            body: JSON.stringify(data), // body data type must match "Content-Type" header
-        })
-            .then(response => response.json()) // parses response to JSON
-            .catch(error => console.error(`Fetch Error =\n`, error)
-            );
+    const postData = (url , entry ) => {
+//I'm thinking revert back one commit to the fetch way then
+//         https://stackoverflow.com/questions/38344612/ajax-request-to-local-file-system-not-working-in-chrome
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
+        xhr.onload = function () {
+            var response = JSON.parse(xhr.responseText);
+            if (xhr.readyState == 4 && xhr.status == "201") {
+                console.table(response);
+            } else {
+                console.error(response);
+            }
+        }
+        xhr.send(JSON.stringify(entry));
+
     };
-    postData(`/api/entries/`, entry)
-        .then(data => console.log(data)) // JSON from `response.json()` call
-        .catch(error => console.error(error));
+    postData(`/api/entries/`, entry);
 
     console.log("after post");
     if (file !== null) {
