@@ -29,7 +29,7 @@
     background-size: cover;
 }
 textarea {
-    margin-left: 5vw;
+    margin: 0 8vw;
     padding-top: 1.7em;
     padding-left: 1em;
     font-family: 'Indie Flower', cursive;
@@ -61,9 +61,15 @@ body {
     background-color: transparent;
 
 }
-#save i, #cancel i {
-    font-size: 3rem;
+.icons {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
+.icons i {
+    font-size: 5rem;
     color: blue;
+    margin: 1rem;
 }
 input[type=text] {
     font-size: 3rem;
@@ -99,3 +105,32 @@ li {
 .date {
     flex-basis: 200px;
 }
+
+form {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+}
+/* code pen file input */
+
+.file {
+    position: relative;
+}
+.file label {
+    background: blue;
+    padding: 5px 20px;
+    color: #fff;
+    font-weight: bold;
+    font-size: .9em;
+    transition: all .4s;
+
+}
+.file input {
+    position: absolute;
+    display: inline-block;
+    left: 0;
+    top: 0;
+    opacity: 0.01;
+    cursor: pointer;
+}
+

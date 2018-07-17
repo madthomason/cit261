@@ -24,11 +24,6 @@ back[1].addEventListener('touchend', function () {
     displayHomeList();
 });
 
-//edit display hide: home, entry->display sending in the entry
-const displayToEdit = document.getElementById("display");
-displayToEdit.addEventListener('touchend', function () {
-    editEntry(true);
-});
 
 const save = document.getElementById("save");
 save.addEventListener('touchend', function () {
@@ -48,16 +43,18 @@ cancel.addEventListener('touchend', function () {
 
 //const edit = document.getElementById('editEntry');
 
-function switchPage(read, element) {
+function switchPage(read, entry_id) {
     const home = document.getElementById('home');
     const entryPage = document.getElementById('entryPage');
     home.classList.toggle("hidden");
     entryPage.classList.toggle("hidden");
 
-    if (read === true && element) {
-        /*const entry = JSON.parse(element);*/
-        //console.log(entry.title);
-        //editEntry();
+    if (read === true && entry_id) {
+        getEntries(entry_id).then((request) => {
+            let entry = JSON.parse(request.responseText);
+            displayEntry(entry);
+        });
+
     }
     if (read !== true) {
         editEntry(true);
@@ -77,45 +74,28 @@ function editEntry(bool) {
     }
 }
 
-function saveEntry() {
-    const entry = {};
-
-    entry.title = document.getElementById("editTitle").value;
-    entry.date = document.getElementById("editDate").value;
-    entry.text = document.getElementById("editEntry").value;
+function saveEntry(update) {
+    const entry_obj = {};
+    entry_obj.title = document.getElementById("editTitle").value;
+    entry_obj.date = document.getElementById("editDate").value;
+    entry_obj.entry = document.getElementById("editEntry").value;
     const file = document.getElementById("editFile").value;
 
-    //Database post
-console.log("before post");
-    const postData = (url , entry ) => {
-//I'm thinking revert back one commit to the fetch way then
-//         https://stackoverflow.com/questions/38344612/ajax-request-to-local-file-system-not-working-in-chrome
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", url, true);
-        xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
-        xhr.onload = function () {
-            var response = JSON.parse(xhr.responseText);
-            if (xhr.readyState == 4 && xhr.status == "201") {
-                console.table(response);
-            } else {
-                console.error(response);
-            }
-        }
-        xhr.send(JSON.stringify(entry));
-
-    };
-    postData(`/api/entries/`, entry);
-
-    console.log("after post");
-    if (file !== null) {
-        /* var preview = document.querySelector('img'); //selects the query named img
-         var file    = document.querySelector('input[type=file]').files[0]; //sames as here
-         var reader  = new FileReader();
-         https://stackoverflow.com/questions/22087076/how-to-make-a-simple-image-upload-using-javascript-html*/
-       // entry.file = getBase64Image(file);
+    if (update) {
+        updateEntry(entry_obj);
     } else {
-        entry.file = file;
+        postData(entry_obj);
     }
+
+    // if (file !== null) {
+    /* var preview = document.querySelector('img'); //selects the query named img
+     var file    = document.querySelector('input[type=file]').files[0]; //sames as here
+     var reader  = new FileReader();
+     https://stackoverflow.com/questions/22087076/how-to-make-a-simple-image-upload-using-javascript-html*/
+    // entry.file = getBase64Image(file);
+    // } else {
+    //     entry.file = file;
+    // }
 
     // var entriesStored = localStorage.getItem("all_entries");
     // var allEntries = JSON.parse(entriesStored);
@@ -129,88 +109,179 @@ console.log("before post");
     document.getElementById("editDate").value = null;
     document.getElementById("editEntry").value = null;
     document.getElementById("editFile").value = null;
-    displayEntry(entry);
+    displayEntry(entry_obj);
     editEntry();
 }
 
-function displayEntry(entry) {
+function displayEntry(entry_obj) {
+    //edit display hide: home, entry->display sending in the entry
+    const displayToEdit = document.getElementById("display");
+    displayToEdit.addEventListener('touchend', function () {
+        editEntry(true);
+        editDisplay(entry_obj);
+    });
+
+    //display entry
     let title = document.getElementById("titleEntry");
     let date = document.getElementById("dateEntry");
     let text = document.getElementById("textFull");
-    if (entry.title === "") {
-        title.innerHTML = entry.date;
+    let temp_date = formatDate(entry_obj.date);
+    //date is title when there is no title
+    if (entry_obj.title === "") {
+        title.innerHTML = temp_date;
         date.innerHTML = null;
     }
     else {
-        title.innerHTML = entry.title;
-        date.innerHTML = entry.date.toLocaleString();
+        title.innerHTML = entry_obj.title;
+        date.innerHTML = temp_date;
     }
-    text.innerHTML = entry.text;
+    text.innerHTML = entry_obj.entry;
     let files = "";
 
+
 }
+
+function editDisplay(entry_obj) {
+    if (entry_obj.title) {
+        document.getElementById("editTitle").value = entry_obj.title;
+    }
+    document.getElementById("editDate").value = entry_obj.date;
+    document.getElementById("editEntry").value = entry_obj.entry;
+    // document.getElementById("file").value = ;
+
+
+}
+
 
 function displayHomeList() {
-    localStorage.removeItem("");
-    let storedEntries = localStorage.getItem("all_entries");
-    let allEntries = JSON.parse(storedEntries);
-    if (allEntries) {
-        let displayer = document.getElementById("entriesDisplay");
-        displayer.innerHTML = null;
-        let numberOfEntries = allEntries.length;
-        for (let i = numberOfEntries - 1; i >= 0; i--) {
-            let title;
-            let date = allEntries[i].date;
-            if (allEntries[i].title) {
-                title = allEntries[i].title;
+    // localStorage.removeItem("");
+    // let storedEntries = localStorage.getItem("all_entries");
+    // let allEntries = JSON.parse(storedEntries);
+    getEntries().then((request) => {
+        let allEntries = JSON.parse(request.responseText);
+        if (allEntries) {
+            let displayer = document.getElementById("entriesDisplay");
+            displayer.innerHTML = null;
+            for (let i = allEntries.length - 1; i >= 0; i--) {
+                let title;
+                let date = formatDate(allEntries[i].date);
+                if (allEntries[i].title) {
+                    title = allEntries[i].title;
+                }
+                else {
+                    title = date;
+                    date = '';
+                }
+                displayer.innerHTML += ' <li id="' + allEntries[i].title + '" itemid="' + i +
+                    '" ontouchend="switchPage(true, ' + allEntries[i].entry_id + ')"> ' + '<h1 class="title">' + title + '</h1>' +
+                    ' <div class="entryTD"> ' + '<p class="text">' + String(allEntries[i].entry).substring(0, 45) + '</p> <p class="date">' +
+                    date + '</p> </div> <hr> </li>';
             }
-            else {
-                title = allEntries[i].date;
-                date = '';
-            }
-            displayer.innerHTML += ' <li id="' + allEntries[i].title + '" itemid="' + i +
-                '" ontouchend="switchPage(true, this)"> ' + '<h1 class="title">' + title + '</h1>' +
-                ' <div class="entryTD"> ' + '<p class="text">' + String(allEntries[i].text).substring(0, 45) + '</p> <p class="date">' +
-                date + '</p> </div> <hr> </li>';
-            //\''+ JSON.stringify(allEntries[i]) +'\'
+        } else {
+            console.log("exit");
+        }
+    });
+}
+
+function searchEntries() {
+    let input = document.getElementById("search");
+    let filter = input.value.toUpperCase();
+    let ul = document.getElementById("entriesDisplay");
+    let li = ul.getElementsByTagName("li");
+    for (let i = 0; i < li.length; i++) {
+        let h1 = li[i].getElementsByTagName("h1")[0];
+        h1 += li[i].getElementsByTagName("p")[0];
+        if (h1.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
         }
     }
 }
 
-/*src =
-https://stackoverflow.com/questions/19183180/how-to-save-an-image-to-localstorage-and-display-it-on-the-next-page*/
-function getBase64Image(img) {
-    var canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
-
-    var ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
-
-    var dataURL = canvas.toDataURL("image/png");
-
-    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+function formatDate(date) {
+    let temp_date = new Date(date);
+    return (temp_date.getMonth() + 1) + '/' + temp_date.getDate() + '/' + temp_date.getFullYear().toString().substr(2, 4);
 }
 
-//SECTION 5 -Journaling
-function saveReminder() {
-    var currentDateTime = new Date();
-    var description = document.getElementById("describe").value;
-    var note = document.getElementById("noteInput").value;
-    var fullNote = currentDateTime.toLocaleString() + "--" + description;
 
-
-}
-
-function showAllNotes() {
-    var storedNotes = localStorage.getItem("all_notes");
-    var allNotes = JSON.parse(storedNotes);
-    if (allNotes) {
-        var displayer = document.getElementById("notesDisplay");
-        displayer.innerHTML = null;
-        var numberOfNotes = allNotes.length;
-        for (var i = numberOfNotes - 1; i >= 0; i--) {
-            // displayer.innerHTML += '<hr><li id="' + entry.title '">' + allNotes[i] + '</li>';
+/*
+    GET, POST, UPDATE (PUT), and DELETE XHR
+ */
+function getEntries(id) {
+    return Promise.resolve().then(() => {
+        let url = 'http://localhost:8080/api/entries/';
+        if (id !== null && id !== undefined) {
+            url += id;
         }
-    }
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+        xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        return xhr;
+    }).then(promiseResponse, (err) => {
+        console.error(err);
+    });
+}
+
+function updateEntry(entry_obj) {
+    let url = 'http://localhost:8080/api/entries/' + entry_obj.entry_id;
+    var xhr = new XMLHttpRequest();
+    xhr.open("PUT", url, true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xhr.onload = function () {
+        var response = JSON.parse(xhr.responseText);
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.table(response);
+        } else {
+            console.error(response);
+        }
+    };
+    xhr.send(JSON.stringify(entry_obj));
+}
+
+function postEntry(entry_obj) {
+    let url = `http://localhost:8080/api/entries/`;
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xhr.onload = function () {
+        var response = JSON.parse(xhr.responseText);
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.table(response);
+        } else {
+            console.error(response);
+        }
+    };
+    xhr.send(JSON.stringify(entry_obj));
+}
+
+function deleteEntry(id) {
+    let url = 'http://localhost:8080/api/entries/' + id;
+    var xhr = new XMLHttpRequest();
+    xhr.open("DELETE", url, true);
+    xhr.onload = function () {
+        var response = JSON.parse(xhr.responseText);
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.table(response);
+        } else {
+            console.error(response);
+        }
+    };
+    xhr.send(null);
+}
+
+function promiseResponse(xhr) {
+    return new Promise((resolve, reject) => {
+        xhr.onload = () => {
+            if (xhr.readyState === 4 && (xhr.status < 200 || xhr.status >= 300)) {
+                reject({request: xhr});
+            } else {
+                resolve(xhr);
+            }
+        };
+        xhr.onerror = () => {
+            reject({request: xhr});
+        };
+        xhr.send();
+    });
 }
