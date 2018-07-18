@@ -137,7 +137,7 @@ function displayEntry(entry) {
     }
     text.innerHTML = entry.text;
     if (entry.file) {
-    file.innerHTML += entry.file;
+        file.innerHTML += entry.file;
     }
 
 }
@@ -191,7 +191,6 @@ function getBase64Image(img) {
     var ctx = canvas.getContext("2d");
     ctx.drawImage(img, 0, 0);
 
-<<<<<<< HEAD
     var dataURL = canvas.toDataURL("image/png");
 
     return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
@@ -218,7 +217,8 @@ function showAllNotes() {
             // displayer.innerHTML += '<hr><li id="' + entry.title '">' + allNotes[i] + '</li>';
         }
     }
-=======
+}
+
 /*
     GET, POST, UPDATE (PUT), and DELETE XHR
  */
@@ -281,5 +281,5 @@ function deleteEntry(id) {
             console.error(response);
         }
     };
->>>>>>> a1ca6df... put api on server, not working yet
 }
+
