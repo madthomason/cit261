@@ -117,7 +117,7 @@ function saveEntry() {
     document.getElementById("editDate").value = null;
     document.getElementById("editEntry").value = null;
     document.getElementById("editFile").value = null;
-   displayEntry(entry);
+    displayEntry(entry);
     editEntry(false);
 }
 
@@ -126,6 +126,7 @@ function displayEntry(entry) {
     let title = document.getElementById("titleEntry");
     let date = document.getElementById("dateEntry");
     let text = document.getElementById("textFull");
+    let file = document.getElementById("fileDisplay");
     if (entry.title === "") {
         title.innerHTML = entry.date;
         date.innerHTML = null;
@@ -135,7 +136,9 @@ function displayEntry(entry) {
         date.innerHTML = entry.date.toLocaleString();
     }
     text.innerHTML = entry.text;
-    let files = "";
+    if (entry.file) {
+    file.innerHTML += entry.file;
+    }
 
 }
 
@@ -143,7 +146,6 @@ function editDisplay() {
     let title = document.getElementById("editTitle");
     let date = document.getElementById("editDate");
     let text = document.getElementById("editEntry");
-
 
 
     title.value = document.getElementById("titleEntry").innerHTML;
