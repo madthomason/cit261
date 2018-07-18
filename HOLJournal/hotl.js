@@ -210,7 +210,7 @@ function formatDate(date) {
  */
 function getEntries(id) {
     return Promise.resolve().then(() => {
-        let url = 'http://localhost:8080/api/entries/';
+        let url = 'https://dev-api.doorstepdates.com/journal/entries/';
         if (id !== null && id !== undefined) {
             url += id;
         }
@@ -224,7 +224,7 @@ function getEntries(id) {
 }
 
 function updateEntry(entry_obj) {
-    let url = 'http://localhost:8080/api/entries/' + entry_obj.entry_id;
+    let url = 'https://dev-api.doorstepdates.com/journal/entries/' + entry_obj.entry_id;
     var xhr = new XMLHttpRequest();
     xhr.open("PUT", url, true);
     xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
@@ -240,7 +240,7 @@ function updateEntry(entry_obj) {
 }
 
 function postEntry(entry_obj) {
-    let url = `http://localhost:8080/api/entries/`;
+    let url = `https://dev-api.doorstepdates.com/journal/entries/`;
     var xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
@@ -256,7 +256,7 @@ function postEntry(entry_obj) {
 }
 
 function deleteEntry(id) {
-    let url = 'http://localhost:8080/api/entries/' + id;
+    let url = 'https://dev-api.doorstepdates.com/journal/entries/' + id;
     var xhr = new XMLHttpRequest();
     xhr.open("DELETE", url, true);
     xhr.onload = function () {
@@ -267,7 +267,6 @@ function deleteEntry(id) {
             console.error(response);
         }
     };
-    xhr.send(null);
 }
 
 function promiseResponse(xhr) {
