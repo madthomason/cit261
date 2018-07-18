@@ -191,6 +191,7 @@ function getBase64Image(img) {
     var ctx = canvas.getContext("2d");
     ctx.drawImage(img, 0, 0);
 
+<<<<<<< HEAD
     var dataURL = canvas.toDataURL("image/png");
 
     return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
@@ -217,4 +218,68 @@ function showAllNotes() {
             // displayer.innerHTML += '<hr><li id="' + entry.title '">' + allNotes[i] + '</li>';
         }
     }
+=======
+/*
+    GET, POST, UPDATE (PUT), and DELETE XHR
+ */
+function getEntries(id) {
+    return Promise.resolve().then(() => {
+        let url = 'https://dev-api.doorstepdates.com/journal/entries/';
+        if (id !== null && id !== undefined) {
+            url += id;
+        }
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+        xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        return xhr;
+    }).then(promiseResponse, (err) => {
+        console.error(err);
+    });
+}
+
+function updateEntry(entry_obj) {
+    let url = 'https://dev-api.doorstepdates.com/journal/entries/' + entry_obj.entry_id;
+    var xhr = new XMLHttpRequest();
+    xhr.open("PUT", url, true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xhr.onload = function () {
+        var response = JSON.parse(xhr.responseText);
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.table(response);
+        } else {
+            console.error(response);
+        }
+    };
+    xhr.send(JSON.stringify(entry_obj));
+}
+
+function postEntry(entry_obj) {
+    let url = `https://dev-api.doorstepdates.com/journal/entries/`;
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xhr.onload = function () {
+        var response = JSON.parse(xhr.responseText);
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.table(response);
+        } else {
+            console.error(response);
+        }
+    };
+    xhr.send(JSON.stringify(entry_obj));
+}
+
+function deleteEntry(id) {
+    let url = 'https://dev-api.doorstepdates.com/journal/entries/' + id;
+    var xhr = new XMLHttpRequest();
+    xhr.open("DELETE", url, true);
+    xhr.onload = function () {
+        var response = JSON.parse(xhr.responseText);
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.table(response);
+        } else {
+            console.error(response);
+        }
+    };
+>>>>>>> a1ca6df... put api on server, not working yet
 }
