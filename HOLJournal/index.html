@@ -22,12 +22,21 @@
     <hr>
     <div id="search">
         <form>
+<<<<<<< HEAD
             <label><i class="fas fa-search"></i><input type="text" placeholder="search"></label>
+=======
+            <label><i class="fas fa-search"></i><input type="text" id="myInput" onkeyup="searchEntries()"
+                                                       placeholder="Search for names.."></label>
+>>>>>>> master
         </form>
     </div>
     <hr>
     <ul id="entriesDisplay">
+<<<<<<< HEAD
        <!-- individual entries -->
+=======
+
+>>>>>>> master
     </ul>
 </div>
 
@@ -37,6 +46,7 @@
     <div id="display">
         <div class="header">
             <button class="back"><i class="fas fa-arrow-left"></i></button>
+<<<<<<< HEAD
             <h1 id="titleEntry"></h1>
             <p id="dateEntry"></p>
         </div>
@@ -44,6 +54,15 @@
         <p id="textFull"></p>
 
         <div id="fileDisplay"></div>
+=======
+            <h1 id="titleEntry">Title</h1>
+            <p id="dateEntry">5/22/2018</p>
+        </div>
+        <hr>
+        <p id="textFull">this is the start of the entry...</p>
+
+        <img src=""/>
+>>>>>>> master
     </div>
     <!--editable mode-->
     <div id="editPage" class="hidden">
@@ -57,6 +76,7 @@
         <textarea id="editEntry" placeholder="
         Today I saw the hand of the Lord in my life..." required></textarea>
 
+<<<<<<< HEAD
         <label><i class="fas fa-upload"> Upload Memories</i></label><input type="file" id="editFile">
         <button id="cancel"><i class="fas fa-trash-alt"></i></button>
         <button id="save"><i class="fas fa-bookmark"></i></button>
@@ -65,3 +85,24 @@
 </div>
 </body>
 </html>
+=======
+
+        <form action="#">
+            <p class="file">
+                <input type="file" name="file" id="file"/>
+                <label for="file">Attach Memories</label>
+            </p>
+            <p class="file">
+                <input type="text" name="youtube" id="video"/>
+                <label for="video">Embed a Video</label>
+            </p>
+        </form>
+        <div class="icons">
+            <button id="cancel"><i class="fas fa-trash-alt"></i></button>
+            <button id="save"><i class="fas fa-bookmark"></i></button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+>>>>>>> master

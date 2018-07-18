@@ -1,0 +1,67 @@
+.transform:nth-child(2) {
+    transform: translateX(40px);
+}
+
+.transform:nth-child(3) {
+    transform: scale(1.5);
+}
+
+.transform:nth-child(4) {
+    color: #484848;
+    transform: rotate(10deg);
+}
+
+.transform:nth-child(5) {
+    transform: skew(15deg, 4deg);
+}
+
+.transform:nth-child(6) {
+    transform-origin: 0 0;
+}
+
+.ad-ad2 h1 span {
+    font-size: 30px;
+    color: #999999;
+    display: inline-block;
+    transition: transform 0.2s ease-out 50ms, color 0.1s linear 50ms;
+}
+
+.ad-ad2 h1:hover span {
+    color: #484848;
+    transform: rotate(10deg) translateX(40px) scale(1.5);
+}
+
+
+
+@keyframes bike {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: -360px 0;
+    }
+}
+
+@keyframes move {
+    0% {
+        transform: translateX(-100px);
+    }
+    100% {
+        transform: translateX(100px);
+    }
+}
+
+.ad-ad3:after {
+    content: '';
+    width: 90px;
+    height: 92px;
+    background-image: url(bike_sprite.png);
+    display: block;
+    margin: auto;
+    animation: 0.4s steps(4, end) infinite 50ms bike, 8s linear infinite 50ms move;
+    animation-play-state: paused;
+}
+
+.ad-ad3:hover:after {
+    animation-play-state: running;
+}
