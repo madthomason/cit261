@@ -281,5 +281,8 @@ function deleteEntry(id) {
             console.error(response);
         }
     };
+<<<<<<< HEAD
+>>>>>>> a1ca6df... put api on server, not working yet
+=======
 >>>>>>> a1ca6df... put api on server, not working yet
 }
