@@ -443,6 +443,13 @@ function deleteEntry(id) {
             console.error(response);
         }
     };
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a1ca6df... put api on server, not working yet
+=======
+>>>>>>> a1ca6df... put api on server, not working yet
+>>>>>>> 8dc30ba54c0a5834724ab43bc8aebb86688b737a
 }
 
 <<<<<<< HEAD
