@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Audio and Video</title>
+    <link rel="stylesheet" href="chapter5.css">
+</head>
+<body>
+<h1>Video and Audio output</h1>
+<p>Native controls with controls.
+    Attributes: autoplay, loop, preload(auto, none, and metadata), poster(teaser image to spark interest), and muted</p>
+<p>support fcontrolsor multiple areas is often necessary so specify type and have multiple child source-tags</p>
+<p>
+    " video width="375" height="280" poster="teaser.jpg" audio="muted"
+    source src="IMG_2860.mp4.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'"
+</p>
+<p> "you could also provide an optional download video link that allows the user to access a local copy
+    of the video and view it at their leisure." </p>
+<h2>own controls</h2>
+<div class="vc">
+    <video src="IMG_2860.mp4.mp4" width="375" height="280" preload="auto"></video>
+
+    <div id="controls" class="hidden">
+        <div id="playPause">Play/Pause</div>
+        <div id="timer">00:00</div>
+        <div id="muteUnmute">Mute/Unmute</div>
+    </div>
+</div>
+
+<h2>Browser controls</h2>
+<video src="IMG_2860.mp4.mp4" width="375" height="280" controls></video>
+<script>
+    var videoEl = document.getElementsByTagName('video')[0],
+        playPauseBtn = document.getElementById('playPause'),
+        vidControls = document.getElementById('controls'),
+        muteBtn = document.getElementById('muteUnmute'),
+        timeHolder = document.getElementById('timer');
+    videoEl.removeAttribute('controls');
+
+    videoEl.addEventListener('canplaythrough', function () {
+        vidControls.classList.remove('hidden');
+    }, false);
+
+    playPauseBtn.addEventListener('click', function () {
+        if (videoEl.paused) {
+            videoEl.play();
+        } else {
+            videoEl.pause();
+        }
+    }, false);
+
+    videoEl.addEventListener('play', function () {
+        playPauseBtn.classList.add('playing');
+    }, false);
+    videoEl.addEventListener('pause', function () {
+        playPauseBtn.classList.remove('playing');
+    }, false);
+
+    muteBtn.addEventListener('click', function () {
+        if (videoEl.muted) {
+            videoEl.muted = false;
+        } else {
+            videoEl.muted = true;
+        }
+    }, false);
+
+    videoEl.addEventListener('volumechange', function () {
+        if (videoEl.muted) {
+            muteBtn.classList.add('muted');
+        } else {
+            muteBtn.classList.remove('muted');
+        }
+    }, false);
+
+    videoEl.addEventListener('ended', function () {
+        videoEl.currentTime = 0;
+    }, false);
+    videoEl.addEventListener('timeupdate', function () {
+        timeHolder.innerHTML = secondsToTime(videoEl.currentTime);
+    }, false);
+
+    timeHolder.innerHTML = secondsToTime(videoEl.currentTime);
+    function secondsToTime(s) {
+        var h = Math.floor(s / (60 * 60)),
+            dm = s % (60 * 60),
+            m = Math.floor(dm / 60),
+            ds = dm % 60,
+            secs = Math.ceil(ds);
+        if (secs === 60) {
+            secs = 0;
+            m = m + 1;
+        }
+        if (secs < 10) {
+            secs = '0' + secs;
+        }
+        if (m === 60) {
+            m = 0;
+            h = h + 1;
+        }
+        if (m < 10) {
+            m = '0' + m;
+        }
+        if (h === 0) {
+            fulltime = m + ':' + secs;
+        } else {
+            fulltime = h + ':' + m + ':' + secs;
+        }
+        return fulltime
+    }
+
+</script>
+</div>
+</body>
+</html>

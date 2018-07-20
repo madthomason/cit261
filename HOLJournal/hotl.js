@@ -274,11 +274,11 @@ function postEntry(entry_obj) {
 
 function deleteEntry(id) {
     return Promise.resolve().then(() => {
-    let url = 'https://dev-api.doorstepdates.com/journal/api/entries/' + id;
+        let url = 'https://dev-api.doorstepdates.com/journal/api/entries/' + id;
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("DELETE", url, true);
-    return xhr;
+        var xhr = new XMLHttpRequest();
+        xhr.open("DELETE", url, true);
+        return xhr;
     }).then(promiseResponse, (err) => {
         console.error(err);
     });
