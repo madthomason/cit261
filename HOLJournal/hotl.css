@@ -66,10 +66,6 @@ body {
     background-color: transparent;
 
 }
-<<<<<<< Updated upstream
-#save i, #cancel i {
-    font-size: 3rem;
-=======
 
 #delete {
     margin: 1em;
@@ -81,7 +77,6 @@ body {
 }
 .icons i {
     font-size: 5rem;
->>>>>>> Stashed changes
     color: blue;
 }
 input[type=text] {
@@ -120,9 +115,19 @@ li {
 }
 .date {
     flex-basis: 200px;
-<<<<<<< Updated upstream
+
 }
-=======
+#textFull {
+    margin: 1em;
+}
+
+#dateEntry {
+    font-size: 2em;
+}
+#editDate {
+    font-size: 1em;
+    border: none;
+    background: #b5b5b5;
 }
 
 form {
@@ -154,4 +159,3 @@ form {
     cursor: pointer;
 }
 
->>>>>>> Stashed changes

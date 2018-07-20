@@ -24,16 +24,7 @@ back[1].addEventListener('touchend', function () {
     displayHomeList();
 });
 
-<<<<<<< Updated upstream
-//edit display hide: home, entry->display sending in the entry
-const displayToEdit = document.getElementById("display");
-displayToEdit.addEventListener('touchend', function () {
-    editEntry();
-});
-
-=======
 //save (bookmark)
->>>>>>> Stashed changes
 const save = document.getElementById("save");
 save.addEventListener('touchend', function () {
     saveEntry();
@@ -48,23 +39,24 @@ cancel.addEventListener('touchend', function () {
 });
 
 
-function switchPage(read, element) {
+function switchPage(displ, entry_id) {
     const home = document.getElementById('home');
     const entryPage = document.getElementById('entryPage');
-    const display = document.getElementById("display");
-    const editPage = document.getElementById("editPage");
+    // const display = document.getElementById("display");
+    // const editPage = document.getElementById("editPage");
     home.classList.toggle("hidden");
     entryPage.classList.toggle("hidden");
 
-    if (read === true && element) {
-        /*const entry = JSON.parse(element);*/
-        //console.log(entry.title);
-        //editEntry();
-        display.classList.remove("hidden");
-        editPage.classList.add("hidden");
+    if (displ === true && entry_id) {
+        getEntries(entry_id).then((request) => {
+            let entry = JSON.parse(request.responseText);
+            displayEntry(entry);
+        }); //are these necessary?
+        // display.classList.remove("hidden");
+        // editPage.classList.add("hidden");
     }
-    if (read !== true) {
-        editEntry();
+    if (displ !== true) {
+        editEntry(true);
     }
 }
 
@@ -85,45 +77,10 @@ function editEntry(bool) {
 
 
     //from display edit the contents
-    editDisplay()
+    // editDisplay();
 }
 
 function saveEntry() {
-<<<<<<< Updated upstream
-    const entry = {};
-//https://www.c-sharpcorner.com/UploadFile/5089e0/database-connectivity-in-javascript/
-    entry.title = document.getElementById("editTitle").value;
-    entry.date = document.getElementById("editDate").value;
-    entry.text = document.getElementById("editEntry").value;
-    const file = document.getElementById("editFile").value;
-    if (file) {
-        /* var preview = document.querySelector('img'); //selects the query named img
-         var file    = document.querySelector('input[type=file]').files[0]; //sames as here
-         var reader  = new FileReader();
-         https://stackoverflow.com/questions/22087076/how-to-make-a-simple-image-upload-using-javascript-html*/
-        entry.file = getBase64Image(file);
-    } else {
-        entry.file = file;
-    }
-
-    var entriesStored = localStorage.getItem("all_entries");
-    var allEntries = JSON.parse(entriesStored);
-    if (allEntries == null) {
-        allEntries = [];
-    }
-    allEntries.push(entry);
-    entriesStored = JSON.stringify(allEntries);
-    localStorage.setItem("all_entries", entriesStored);
-    document.getElementById("editTitle").value = null;
-    document.getElementById("editDate").value = null;
-    document.getElementById("editEntry").value = null;
-    document.getElementById("editFile").value = null;
-   displayEntry(entry);
-    editEntry(false);
-}
-
-function displayEntry(entry) {
-=======
     const entry_obj = {};
 
     entry_obj.title = document.getElementById("editTitle").value;
@@ -141,7 +98,7 @@ function displayEntry(entry) {
     resetEdit();
     //wont work to delete or update if just created
     displayEntry(entry_obj);
-    editEntry();
+    editEntry(false);
 }
 
 function displayEntry(entry_obj) {
@@ -151,18 +108,12 @@ function displayEntry(entry_obj) {
         editEntry(true);
         editDisplay(entry_obj);
     });
->>>>>>> Stashed changes
 
     let title = document.getElementById("titleEntry");
     let date = document.getElementById("dateEntry");
     let text = document.getElementById("textFull");
-<<<<<<< Updated upstream
-    if (entry.title === "") {
-        title.innerHTML = entry.date;
-=======
     let file = document.getElementById("youtube");
-    let temp_date = formatDate(entry_obj.date);
-
+    let formattedDate = formatDate(entry_obj.date);
     //embed the actual youtube code
     if (entry_obj.file) {
         file.src += entry_obj.file;
@@ -174,35 +125,24 @@ function displayEntry(entry_obj) {
 
     //date is title when there is no title
     if (entry_obj.title === "") {
-        title.innerHTML = temp_date;
->>>>>>> Stashed changes
+        title.innerHTML = formattedDate;
         date.innerHTML = null;
     }
     else {
-        title.innerHTML = entry.title;
-        date.innerHTML = entry.date.toLocaleString();
+        title.innerHTML = entry_obj.title;
+        date.innerHTML = formattedDate;
     }
-<<<<<<< Updated upstream
-    text.innerHTML = entry.text;
-    let files = "";
 
-}
-
-function editDisplay() {
-    let title = document.getElementById("editTitle");
-    let date = document.getElementById("editDate");
-    let text = document.getElementById("editEntry");
-
-
-=======
     text.innerHTML = entry_obj.entry;
 
 
     const deleteButton = document.getElementById("delete");
     deleteButton.addEventListener('touchend', function () {
-        deleteEntry(entry_obj.entry_id);
-        switchPage(true);
-        displayHomeList();
+        deleteEntry(entry_obj.entry_id).then(()=> {
+            displayHomeList();
+            switchPage(true);
+        });
+
     });
 }
 
@@ -210,50 +150,18 @@ function editDisplay(entry_obj) {
     if (entry_obj.title) {
         document.getElementById("editTitle").value = entry_obj.title;
     }
-    document.getElementById("editDate").value =  new Date(entry_obj.date).toISOString().substr(0,10);
+    document.getElementById("editDate").value = new Date(entry_obj.date).toISOString().substr(0, 10);
     document.getElementById("editEntry").value = entry_obj.entry;
     document.getElementById("video").value = entry_obj.file;
     let id = document.getElementById("editEntry");
-       id.setAttribute("data-identifier", entry_obj.entry_id);
+    id.setAttribute("data-identifier", entry_obj.entry_id);
 
     update = true;
 }
->>>>>>> Stashed changes
 
-    title.value = document.getElementById("titleEntry").innerHTML;
-    date.value = document.getElementById("dateEntry").innerHTML;
-    text.value = document.getElementById("textFull").innerHTML;
-    let files = ""; //document.getElementById("editFile");  for later
-}
 
 function displayHomeList() {
-<<<<<<< Updated upstream
-    localStorage.removeItem("");
-    let storedEntries = localStorage.getItem("all_entries");
-    let allEntries = JSON.parse(storedEntries);
-    if (allEntries) {
-        let displayer = document.getElementById("entriesDisplay");
-        displayer.innerHTML = null;
-        let numberOfEntries = allEntries.length;
-        for (let i = numberOfEntries - 1; i >= 0; i--) {
-            let title;
-            let date = allEntries[i].date;
-            if (allEntries[i].title) {
-                title = allEntries[i].title;
-            }
-            else {
-                title = allEntries[i].date;
-                date = '';
-            }
-            displayer.innerHTML += ' <li id="' + allEntries[i].title + '" itemid="' + i +
-                '" ontouchend="switchPage(true, this)"> ' + '<h1 class="title">' + title + '</h1>' +
-                ' <div class="entryTD"> ' + '<p class="text">' + String(allEntries[i].text).substring(0, 32) + '</p> <p class="date">' +
-                date + '</p> </div> <hr> </li>';
-            //\''+ JSON.stringify(allEntries[i]) +'\'
-=======
-    // localStorage.removeItem("");
-    // let storedEntries = localStorage.getItem("all_entries");
-    // let allEntries = JSON.parse(storedEntries);
+
     getEntries().then((request) => {
         let allEntries = JSON.parse(request.responseText);
         localStorage.setItem("entries", JSON.stringify(allEntries));
@@ -263,6 +171,7 @@ function displayHomeList() {
             for (let i = allEntries.length - 1; i >= 0; i--) {
                 let title;
                 let date = formatDate(allEntries[i].date);
+                let file = '';
                 if (allEntries[i].title) {
                     title = allEntries[i].title;
                 }
@@ -270,8 +179,10 @@ function displayHomeList() {
                     title = date;
                     date = '';
                 }
+                if (allEntries[i].file !== null)
+                    file = ' <i class="fas fa-paperclip"></i>';
                 displayer.innerHTML += ' <li id="' + allEntries[i].title + '" itemid="' + i +
-                    '" ontouchend="switchPage(true, ' + allEntries[i].entry_id + ')" class=""> ' + '<h1 class="title">' + title + '</h1>' +
+                    '" ontouchend="switchPage(true, ' + allEntries[i].entry_id + ')" class=""> ' + '<h1 class="title">' + title + file + '</h1>' +
                     ' <div class="entryTD"> ' + '<p class="text">' + String(allEntries[i].entry).substring(0, 60) + '</p> <p class="date">' +
                     date + '</p> </div> <hr> </li>';
             }
@@ -287,69 +198,29 @@ function searchEntries(search) {
     let items = JSON.parse(localStorage.getItem("entries")).reverse();
     let ul = document.getElementById("entriesDisplay");
     let li = ul.getElementsByTagName("li");
-     for (let i = 0; i < items.length; i++) {
-         let item = items[i].title + items[i].entry;
-    //     h1 += li[i].getElementsByTagName("p")[0];
+    for (let i = 0; i < items.length; i++) {
+        let item = items[i].title + items[i].entry;
+        //     h1 += li[i].getElementsByTagName("p")[0];
         if (item.toString().toUpperCase().indexOf(filter) > -1) {
             li[i].classList.remove("hidden");
         } else {
             li[i].classList.add("hidden");
->>>>>>> Stashed changes
         }
     }
 }
 
-<<<<<<< Updated upstream
-/*src =
-https://stackoverflow.com/questions/19183180/how-to-save-an-image-to-localstorage-and-display-it-on-the-next-page*/
-function getBase64Image(img) {
-    var canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
-=======
 function resetEdit() {
     document.getElementById("editTitle").value = '';
     document.getElementById("editDate").value = '';
     document.getElementById("editEntry").value = '';
     document.getElementById("video").value = '';
 }
+
 function formatDate(date) {
     let temp_date = new Date(date);
     return (temp_date.getMonth() + 1) + '/' + temp_date.getDate() + '/' + temp_date.getFullYear().toString().substr(2, 4);
 }
->>>>>>> Stashed changes
 
-    var ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
-
-<<<<<<< Updated upstream
-    var dataURL = canvas.toDataURL("image/png");
-
-    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-}
-
-//SECTION 5 -Journaling
-function saveReminder() {
-    var currentDateTime = new Date();
-    var description = document.getElementById("describe").value;
-    var note = document.getElementById("noteInput").value;
-    var fullNote = currentDateTime.toLocaleString() + "--" + description;
-
-
-}
-
-function showAllNotes() {
-    var storedNotes = localStorage.getItem("all_notes");
-    var allNotes = JSON.parse(storedNotes);
-    if (allNotes) {
-        var displayer = document.getElementById("notesDisplay");
-        displayer.innerHTML = null;
-        var numberOfNotes = allNotes.length;
-        for (var i = numberOfNotes - 1; i >= 0; i--) {
-            // displayer.innerHTML += '<hr><li id="' + entry.title '">' + allNotes[i] + '</li>';
-        }
-    }
-=======
 /*
     GET, POST, UPDATE (PUT), and DELETE XHR
  */
@@ -402,20 +273,29 @@ function postEntry(entry_obj) {
 }
 
 function deleteEntry(id) {
+    return Promise.resolve().then(() => {
     let url = 'https://dev-api.doorstepdates.com/journal/api/entries/' + id;
 
     var xhr = new XMLHttpRequest();
     xhr.open("DELETE", url, true);
+    return xhr;
+    }).then(promiseResponse, (err) => {
+        console.error(err);
+    });
+}
 
-    xhr.onload = function () {
-        console.log("deleting" + url);
-        // var response = JSON.parse(xhr.responseText);
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log("success");
-        } else {
-            console.log("err");
-        }
-    };
-    xhr.send();
->>>>>>> Stashed changes
+function promiseResponse(xhr) {
+    return new Promise((resolve, reject) => {
+        xhr.onload = () => {
+            if (xhr.readyState === 4 && (xhr.status < 200 || xhr.status >= 300)) {
+                reject({request: xhr});
+            } else {
+                resolve(xhr);
+            }
+        };
+        xhr.onerror = () => {
+            reject({request: xhr});
+        };
+        xhr.send();
+    });
 }
